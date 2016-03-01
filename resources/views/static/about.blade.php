@@ -9,9 +9,9 @@
   <p>Friends+ is an open-source social network free of advertisements, user information tracking, and created with the user in mind from the ground up. It was built by Nathan Johnson with the <a href="http://laravel.com" target="_blank">Laravel PHP framework</a>, an awesome MVC framework that makes PHP much nicer to code with.</p>
   <h4>Why did I make this?</h4>
   <p>I created Friends+ for my Senior Exit Project showcase. The showcase is a project in which we must spend time doing something in the career we chose and then present what we've done to the class. The career I chose for my Senior Exit Project is software development, thus I built this web application to showcase me doing something in this field. I spent many hours building this &mdash; much more than the required amount of hours! For the job shadow portion of my Senior Exit Project, I had the great oppurtunity to job shadow at <a href="http://spudsoftware.com/" target="_blank">Spud Software</a> in Grand Blanc, MI. It was a great experience and I learned a lot from Spud's awesome team members!
-  <h4>Do you like coding?</h4>
-  <p>Friends+ is open-source! Check out the GitHub repository and feel free to submit a pull request if you have an improvement to make. Even if you aren't into coding you can still look at the code behind the curtain if you'd like.</p>
-  <a href="http://github.com/nathan815/friendsplus" target="_blank" class="btn btn-warning btn-sm">Go to GitHub &raquo;</a>
+  <h4>Want to contribute?</h4>
+  <p>Friends+ is open-source! Check out the GitHub repository and feel free to submit a pull request if you would like to make any improvements. Even if you aren't into coding you can still look at the code behind the curtain if you'd like.</p>
+  <a href="http://github.com/nathan815/friendsplus" target="_blank" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-console"></span> Go to GitHub &raquo;</a>
 </div>
 
 @stop
