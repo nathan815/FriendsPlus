@@ -2,6 +2,10 @@
 
 @section('title', 'Home')
 
+@section('stylesheets')
+<link rel="stylesheet" type="text/css" href="/assets/css/home.css" />
+@stop
+
 @section('content_outside_container')
 <div class="jumbotron">
   <div class="container">

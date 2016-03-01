@@ -1,0 +1,10 @@
+/**
+ * Home page CSS
+ */
+
+.jumbotron {
+  padding: 30px;
+}
+.jumbotron h1, .jumbotron h2 {
+  margin-top:0
+}

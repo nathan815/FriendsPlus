@@ -1,5 +1,3 @@
-<!-- left content area, right sidebar -->
-
 @extends('layouts.master')
 
 @section('main_content')
