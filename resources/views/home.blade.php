@@ -18,11 +18,11 @@
         <h2>Sign Up</h2>
         <h5>It's quick, easy, and 100% free.</h5>
         <form action="{{ route('auth.signup') }}" method="POST">
-          <input type="text" required class="form-control" placeholder="Full Name" />
-          <input type="text" class="form-control" placeholder="Username" />
-          <input type="text" required class="form-control" placeholder="Email" />
-          <input type="password" required class="form-control" placeholder="Password" />
-          <input type="password" required class="form-control" placeholder="Confirm Password" />
+          <input type="text" required class="form-control" placeholder="Full Name" name="full_name" />
+          <input type="text" class="form-control" placeholder="Username" name="username" />
+          <input type="text" required class="form-control" placeholder="Email" name="email" />
+          <input type="password" required class="form-control" placeholder="Password" name="password" />
+          <input type="password" required class="form-control" placeholder="Confirm Password" name="confirm_password" />
           <div class="checkbox pull-left" style="margin-top:25px">
             <label>
               <input type="checkbox" required name="terms" /> 

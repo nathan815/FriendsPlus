@@ -4,6 +4,7 @@ namespace SocialNetwork\Http\Controllers;
 
 use Illuminate\Auth\AuthManager;
 use Illuminate\Http\Request;
+use Validator;
 
 use SocialNetwork\Http\Requests;
 use SocialNetwork\Http\Controllers\Controller;
@@ -37,7 +38,10 @@ class AuthController extends Controller
     $error_messages = [
       'terms.accepted' => 'You must agree with the terms.'
     ];
-    $this->validate($this->request, $rules, $error_messages);
+    $validator = Validator::make($this->request->all(), $rules, $error_messages);
+    if($validator->fails()) {
+      return redirect()->route('auth.signup')->withInput()->withErrors($validator);
+    }
 
     // Create user
     $user->create([
