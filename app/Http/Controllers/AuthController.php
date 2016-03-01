@@ -6,7 +6,7 @@ use Illuminate\Auth\AuthManager;
 use Illuminate\Http\Request;
 use Validator;
 
-use SocialNetwork\Http\Requests;
+use SocialNetwork\Http\Requests\SignUpRequest;
 use SocialNetwork\Http\Controllers\Controller;
 use SocialNetwork\Models\User;
 
@@ -24,35 +24,22 @@ class AuthController extends Controller
   public function getSignup() {
     return view('auth.signup');
   }
-  public function postSignup(User $user) {
-    
-    // Validate the form
-    $rules = [
-      'full_name' => 'required|regex:/^[\pL\s]+$/u',
-      'email' => 'required|unique:users|email|max:255',
-      'username' => 'required|unique:users|alpha_dash|max:15',
-      'password' => 'required|min:6',
-      'confirm_password' => 'required|same:password',
-      'terms' => 'accepted'
-    ];
-    $error_messages = [
-      'terms.accepted' => 'You must agree with the terms.'
-    ];
-    $validator = Validator::make($this->request->all(), $rules, $error_messages);
-    if($validator->fails()) {
-      return redirect()->route('auth.signup')->withInput()->withErrors($validator);
-    }
+  public function postSignup(SignUpRequest $request, User $user) {
 
     // Create user
     $user->create([
-      'name' => $this->request->full_name,
-      'email' => $this->request->email,
-      'username' => $this->request->username,
-      'password' => bcrypt($this->request->password)
+      'name' => $request->full_name,
+      'email' => $request->email,
+      'username' => $request->username,
+      'password' => bcrypt($request->password)
     ]);
 
     // Redirect
-    return redirect()->route('home')->withAlert(['type' => 'success', 'message' => 'Welcome to Friends+! You can now login to your new account.']);
+    $alert = [
+      'type' => 'success', 
+      'message' => 'Welcome to Friends+! You can now login to your new account.'
+    ];
+    return redirect()->route('home')->withAlert($alert);
 
   }
 
@@ -62,12 +49,15 @@ class AuthController extends Controller
   public function postLogin() {
     
     if(!$this->request->login || !$this->request->password) {
-      return redirect()->back()->withAlert(['type'=>'error','message'=>'Enter your username/email and password.']);
+      return redirect()->back()->withAlert([
+        'type'=>'error',
+        'message'=>'Enter your username/email and password.'
+      ]);
     }
 
-    $username_or_email_field = filter_var($this->request->input('login'), FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+    $login_field = filter_var($this->request->input('login'), FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
     $info = [ 
-      $username_or_email_field => $this->request->input('login'), 
+      $login_field => $this->request->input('login'), 
       'password' => $this->request->input('password') 
     ];
 
