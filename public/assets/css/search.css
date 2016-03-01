@@ -1,0 +1,30 @@
+/**
+ * Search page css
+ */
+
+.filters .form-group {
+  margin: 0;
+}
+.filters input[type="text"] {
+  width: 100%;
+  margin-bottom: 15px;
+}
+.filters label {
+  margin: 0;
+}
+.filters .well {
+  padding: 15px;
+  border-radius: 5px;
+  font-size: 13px;
+}
+.filters h6 {
+  font-weight: bold;
+}
+
+.search-icon {
+  font-size: 40px;
+}
+
+input {
+  outline: none;
+}

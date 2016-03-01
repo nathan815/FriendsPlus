@@ -33,6 +33,16 @@ button {
   box-shadow: 1px 1px 2px #ccc;
 }
 
+.text-centered {
+  text-align: center;
+}
+.text-left {
+  text-align: left;
+}
+.text-right {
+  text-align: right;
+}
+
 .sidebar {
   padding-left: 0;
 }
@@ -70,4 +80,17 @@ button {
   form.login input {
     width:190px!important;
   }
+}
+
+.userblock a {
+  text-decoration: none;
+}
+.userblock a:hover span {
+  text-decoration: underline;
+} 
+.userblock a small {
+  font-size: 16px;
+}
+.userblock p {
+  margin-bottom: 0px;
 }

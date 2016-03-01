@@ -25,17 +25,17 @@
 // Accessed by anyone
 Route::group(['middleware' => ['web']], function () {
   
+  /**
+   * Home page / feed
+   */
   Route::get('/', [
     'uses' => 'HomeController@index',
     'as' => 'home'
   ]);
-  
-  Route::get('/user/{username}', [
-    'uses' => 'ProfileController@index',
-    'as' => 'profile'
-  ])
-  ->where(['username' => '[A-Za-z0-9_\-]+']);
 
+  /**
+   * Static pages (about,contact)
+   */
   Route::get('/about', function() {
     return view('static.about');
   });
@@ -44,12 +44,28 @@ Route::group(['middleware' => ['web']], function () {
     'uses' => 'ContactController@index',
     'as' => 'contact'
   ]);
+  
+  /**
+   * Users
+   */
+  Route::get('/users', [
+    'uses' => 'UsersController@getList',
+    'as' => 'user.list'
+  ]);
+  Route::get('/users/{username}', [
+    'uses' => 'ProfileController@getProfile',
+    'as' => 'user.profile'
+  ])
+  ->where(['username' => '[A-Za-z0-9_\-]+']);
 
 });
 
 // Accessed only by guests
 Route::group(['middleware' => ['web', 'guest']], function () {
 
+    /**
+     * Authentication
+     */
     Route::get('/sign-up', [
       'uses' => 'AuthController@getSignup',
       'as' => 'auth.signup'
@@ -57,7 +73,6 @@ Route::group(['middleware' => ['web', 'guest']], function () {
     Route::post('/sign-up', [
       'uses' => 'AuthController@postSignup'
     ]);
-
     Route::get('/login', [
       'uses' => 'AuthController@getLogin',
       'as' => 'auth.login'
@@ -71,9 +86,20 @@ Route::group(['middleware' => ['web', 'guest']], function () {
 // Accessed only by signed in users
 Route::group(['middleware' => ['web', 'auth']], function () {
   
+  /**
+   * Logout
+   */
   Route::get('/logout', [
     'uses' => 'AuthController@getLogout',
     'as' => 'auth.logout'
+  ]);
+
+  /**
+   * Search
+   */
+  Route::get('/search', [
+    'uses' => 'SearchController@getResults',
+    'as' => 'search.results'
   ]);
 
 });

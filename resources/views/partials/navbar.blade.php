@@ -27,7 +27,7 @@
                   <span class="label label-warning">10</span>
                 </a>
                 <ul class="dropdown-menu">
-                  <li class="dropdown-header"><img src="http://www.collegeforcreativestudies.edu/modules/people/js/loading.gif" /> Loading...</li>
+                  <li class="dropdown-header"><img src="/assets/img/navbar_loading.gif" /> Loading...</li>
                 </ul>
               </li>
               <li class="dropdown">
@@ -37,7 +37,7 @@
                   <span class="label label-warning">2</span> 
                 </a>
                 <ul class="dropdown-menu">
-                  <li class="dropdown-header"><img src="http://www.collegeforcreativestudies.edu/modules/people/js/loading.gif" /> Loading...</li>
+                  <li class="dropdown-header"><img src="/assets/img/navbar_loading.gif" /> Loading...</li>
                 </ul>
               </li>
               <li class="dropdown">
@@ -47,7 +47,7 @@
                   <span class="label label-warning">2</span> 
                 </a>
                 <ul class="dropdown-menu">
-                  <li class="dropdown-header"><img src="http://www.collegeforcreativestudies.edu/modules/people/js/loading.gif" /> Loading...</li>
+                  <li class="dropdown-header"><img src="/assets/img/navbar_loading.gif" /> Loading...</li>
                 </ul>
               </li>
             @endif
@@ -59,8 +59,8 @@
             @if(Auth::check())
 
               <li>
-                <form class="navbar-form" role="search" action="/search">
-                    <input type="text" class="form-control" placeholder="Search for people..." name="srch-term" id="srch-term">
+                <form class="navbar-form" role="search" action="{{ route('search.results') }}">
+                    <input type="text" class="form-control" placeholder="Search for people..." name="q" autocomplete="off" value="{{ Route::is('search.results') ? Request::get('q') : '' }}">
                 </form>
               </li>
 
