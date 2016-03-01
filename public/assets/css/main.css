@@ -5,6 +5,7 @@
 body {
   background: #eee url(../img/concrete_seamless.png);
   padding-top: 64px;
+  font-size: 14px
 }
 
 h1:first-child, 
@@ -24,7 +25,7 @@ button {
   margin-top: 20px;
 }
 
-.white-box {
+.white-box, .footer {
   background: white;
   padding: 15px;
   margin-bottom: 10px;
@@ -37,11 +38,9 @@ button {
 }
 
 .footer {
-  background: white;
   padding: 10px;
   margin: 40px 0 20px;
-  border-radius: 3px;
-  box-shadow: 1px 1px 2px #ccc;
+  font-size: 13px;
 }
 
 .col-centered {
