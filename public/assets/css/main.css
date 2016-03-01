@@ -1,0 +1,72 @@
+body {
+  background: #eee url('http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/concrete_seamless.png');
+  padding-top: 64px;
+}
+
+.white-box {
+  background: white;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 2px #ccc;
+}
+
+.main-container {
+  margin-top: 20px;
+}
+
+.jumbotron {
+  padding: 30px;
+}
+.jumbotron h1, .jumbotron h2 {
+  margin-top:0
+}
+.footer {
+  background: white;
+  padding: 10px;
+  margin: 40px 0 20px;
+  border-radius: 3px;
+  box-shadow: 1px 1px 2px #ccc;
+}
+
+h1:first-child, 
+h2:first-child, 
+h3:first-child, 
+h4:first-child, 
+h5:first-child, 
+h6:first-child {
+  margin-top: 0;
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 970px;
+  }
+}
+
+.col-centered {
+  margin-right: auto;
+  margin-left: auto;
+  float: none;
+}
+
+.alert-fixed {
+  position: fixed;
+  top: 75px;
+  left: 50%;
+  margin-left: -300px;
+  width: 600px;
+  font-size: 14px;
+  box-shadow: 0px 2px 6px #999;
+  z-index: 5;
+}
+
+@media only screen and (min-width : 768px) {
+  form.login input {
+    width:190px!important;
+  }
+}
