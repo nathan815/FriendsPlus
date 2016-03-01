@@ -71,10 +71,6 @@ Route::group(['middleware' => ['web', 'guest']], function () {
 // Accessed only by signed in users
 Route::group(['middleware' => ['web', 'auth']], function () {
   
-  Route::get('/test', function() {
-    dd('test');
-  });
-  
   Route::get('/logout', [
     'uses' => 'AuthController@getLogout',
     'as' => 'auth.logout'
