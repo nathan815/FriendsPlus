@@ -14,11 +14,17 @@
           <ul class="nav navbar-nav navbar-left">
 
             @if(Auth::check())
-              <li><a href="/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+              <li>
+                <a href="/">
+                  <span class="glyphicon glyphicon-home"></span> 
+                  <span class="hidden-sm">Home</span>
+                </a>
+              </li>
               <li class="dropdown">
                 <a href="/messages" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                  <span class="glyphicon glyphicon-envelope"></span> Messages 
-                  <span class="label label-warning">3</span>
+                  <span class="glyphicon glyphicon-envelope"></span> 
+                  <span class="hidden-sm">Messages</span>
+                  <span class="label label-warning">10</span>
                 </a>
                 <ul class="dropdown-menu">
                   <li class="dropdown-header"><img src="http://www.collegeforcreativestudies.edu/modules/people/js/loading.gif" /> Loading...</li>
@@ -26,7 +32,8 @@
               </li>
               <li class="dropdown">
                 <a href="/requests" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                  <span class="glyphicon glyphicon-user"></span> Requests 
+                  <span class="glyphicon glyphicon-user"></span> 
+                  <span class="hidden-sm">Requests</span>
                   <span class="label label-warning">2</span> 
                 </a>
                 <ul class="dropdown-menu">
@@ -35,7 +42,8 @@
               </li>
               <li class="dropdown">
                 <a href="/notifications" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                  <span class="glyphicon glyphicon-bell"></span> Notifications 
+                  <span class="glyphicon glyphicon-bell"></span> 
+                  <span class="hidden-sm">Notifications</span>
                   <span class="label label-warning">2</span> 
                 </a>
                 <ul class="dropdown-menu">
