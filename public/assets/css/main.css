@@ -70,3 +70,7 @@ button {
     width:190px!important;
   }
 }
+
+.sidebar {
+  padding-left: 0;
+}

@@ -10,7 +10,7 @@
   <h4>Why did I make this?</h4>
   <p>I created Friends+ for my Senior Exit Project showcase. The showcase is a project in which we must spend time doing something in the career we chose and then present what we've done to the class. The career I chose for my Senior Exit Project is software development, thus I built this web application to showcase me doing something in this field. I spent many hours building this &mdash; much more than the required amount of hours! For the job shadow portion of my Senior Exit Project, I had the great oppurtunity to job shadow at <a href="http://spudsoftware.com/" target="_blank">Spud Software</a> in Grand Blanc, MI. It was a great experience and I learned a lot from Spud's awesome team members!
   <h4>Want to contribute?</h4>
-  <p>Friends+ is open-source! Check out the GitHub repository and feel free to submit a pull request if you would like to make any improvements. Even if you aren't into coding you can still look at the code behind the curtain if you'd like.</p>
+  <p>Friends+ is open-source! Check out the GitHub repository and feel free to submit a pull request if you would like to make any improvements. Even if you aren't into coding you can still look at the code behind the scenes if you'd like.</p>
   <a href="http://github.com/nathan815/friendsplus" target="_blank" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-console"></span> Go to GitHub &raquo;</a>
 </div>
 
