@@ -12,7 +12,7 @@
   <h3>Search results for <b>{{ $query }}</b></h3>
 </div>
 
-@if($users->count())
+@if($count)
   @foreach($users as $user)
     @include('user.userblock')
   @endforeach
@@ -33,12 +33,12 @@
       <h6>Information</h6>
       <div class="form-group">
         <label for="q">Full Name/Username</label>
-        <input type="text" name="q" value="{{ $query }}" placeholder="Full Name/Username" autofocus />
+        <input type="text" class="form-control text-bold" name="q" value="{{ $query }}" placeholder="Full Name/Username" autofocus autocomplete="off" />
       </div>
 
       <div class="form-group">
         <label for="location">Location</label>
-        <input type="text" name="location" value="{{ $location }}" id="location" placeholder="Location" />
+        <input type="text" class="form-control" name="location" value="{{ $location }}" id="location" placeholder="Location" autocomplete="off" />
       </div>
 
       <div class="form-group">
@@ -75,7 +75,7 @@
         <button type="submit" class="btn btn-warning btn-sm">
         Search</button>
       </div>
-      
+
     </form>
   </div>
 @stop

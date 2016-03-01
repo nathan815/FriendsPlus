@@ -42,6 +42,9 @@ button {
 .text-right {
   text-align: right;
 }
+.text-bold {
+  font-weight: bold;
+}
 
 .sidebar {
   padding-left: 0;
