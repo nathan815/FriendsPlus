@@ -52,7 +52,7 @@ Route::group(['middleware' => ['web']], function () {
     'uses' => 'UsersController@getList',
     'as' => 'user.list'
   ]);
-  Route::get('/users/{username}', [
+  Route::get('/users/{username}/{tab?}', [
     'uses' => 'ProfileController@getProfile',
     'as' => 'user.profile'
   ])

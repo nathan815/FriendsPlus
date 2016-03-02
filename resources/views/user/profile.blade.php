@@ -51,11 +51,11 @@
 
   <div class="profile-nav">
     <ul class="nav nav-pills nav-sm">
-      <li class="active"><a href="#">Posts</a></li>
-      <li><a href="#">Pictures</a></li>
-      <li><a href="#">Friends</a></li>
-      <li><a href="#">Groups</a></li>
-      <li><a href="#">Info</a></li>
+      <li class="{{ $tab == 'posts' ? 'active' : '' }}"><a href="{{ route('user.profile', [ $user->username ]) }}">Posts</a></li>
+      <li class="{{ $tab == 'pictures' ? 'active' : '' }}"><a href="{{ route('user.profile', [ $user->username, 'pictures' ]) }}">Pictures</a></li>
+      <li class="{{ $tab == 'friends' ? 'active' : '' }}"><a href="{{ route('user.profile', [ $user->username, 'friends' ]) }}">Friends</a></li>
+      <li class="{{ $tab == 'groups' ? 'active' : '' }}"><a href="{{ route('user.profile', [ $user->username, 'groups' ]) }}">Groups</a></li>
+      <li class="{{ $tab == 'info' ? 'active' : '' }}"><a href="{{ route('user.profile', [ $user->username, 'info' ]) }}">Info</a></li>
     </ul>
   </div>
 
@@ -66,7 +66,7 @@
   <div class="profile-sidebar col-md-4">
     
     <div class="white-box">
-      <b>Bio</b>
+      <b>About Me</b>
       <p>{{ $user->bio }}</p>
     </div>
   </div>
