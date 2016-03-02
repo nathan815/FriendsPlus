@@ -4,7 +4,7 @@ namespace SocialNetwork\Http\Controllers;
 
 use Illuminate\Auth\AuthManager;
 use Illuminate\Http\Request;
-use Validator;
+use Session;
 
 use SocialNetwork\Http\Requests\SignUpRequest;
 use SocialNetwork\Http\Controllers\Controller;
@@ -67,7 +67,7 @@ class AuthController extends Controller
       return redirect()->back()->withInput()->withAlert(['type'=>'danger','message'=>$message]);
     }
 
-    return redirect()->back();
+    return redirect()->intended(Session::get('_previous')['url']);
 
   }
   public function getLogout() {
