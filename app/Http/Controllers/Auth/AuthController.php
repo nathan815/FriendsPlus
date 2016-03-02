@@ -1,10 +1,10 @@
 <?php
 
-namespace SocialNetwork\Http\Controllers\Auth;
+namespace FriendsPlus\Http\Controllers\Auth;
 
-use SocialNetwork\User;
+use FriendsPlus\User;
 use Validator;
-use SocialNetwork\Http\Controllers\Controller;
+use FriendsPlus\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 

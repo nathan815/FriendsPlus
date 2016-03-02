@@ -28,19 +28,26 @@
       <div class="actions pull-right">
         
         @if($is_owner)
-        <button class="btn btn-default">Edit Profile</button>
+          <button class="btn btn-default">Edit Profile</button>
         @else
-        <button class="btn btn-primary">Add Friend</button>
-        <div class="dropdown">
-          <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-            <span class="glyphicon glyphicon-cog"></span> 
-            <span class="glyphicon glyphicon-menu-down"></span>
-          </button>
-          <ul class="dropdown-menu dropdown-menu-right">
-            <li><a href="#">Block {{ "@" . $user->username }}</a></li>
-            <li><a href="#">Report {{ "@" . $user->username }}</a></li>
-          </ul>
-        </div>
+
+          @if(true)
+            <button class="btn btn-primary">Message</button>
+            <button class="btn btn-danger">Unfriend</button>
+          @else
+            <button class="btn btn-primary">Add Friend</button>
+          @endif
+
+          <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+              <span class="glyphicon glyphicon-cog"></span> 
+              <span class="glyphicon glyphicon-menu-down"></span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-right">
+              <li><a href="#">Block {{ "@" . $user->username }}</a></li>
+              <li><a href="#">Report {{ "@" . $user->username }}</a></li>
+            </ul>
+          </div>
         @endif
 
       </div>

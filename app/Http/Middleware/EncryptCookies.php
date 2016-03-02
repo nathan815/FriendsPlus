@@ -1,6 +1,6 @@
 <?php
 
-namespace SocialNetwork\Http\Middleware;
+namespace FriendsPlus\Http\Middleware;
 
 use Illuminate\Cookie\Middleware\EncryptCookies as BaseEncrypter;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace SocialNetwork\Http\Middleware;
+namespace FriendsPlus\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;

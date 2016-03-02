@@ -1,6 +1,6 @@
 <?php
 
-namespace SocialNetwork\Providers;
+namespace FriendsPlus\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace SocialNetwork\Http\Requests;
+namespace FriendsPlus\Http\Requests;
 
-use SocialNetwork\Http\Requests\Request;
+use FriendsPlus\Http\Requests\Request;
 
 class SignUpRequest extends Request
 {

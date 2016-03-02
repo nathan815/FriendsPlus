@@ -1,6 +1,6 @@
 <?php
 
-namespace SocialNetwork\Events;
+namespace FriendsPlus\Events;
 
 abstract class Event
 {

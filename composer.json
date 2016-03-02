@@ -21,7 +21,7 @@
             "database"
         ],
         "psr-4": {
-            "SocialNetwork\\": "app/"
+            "FriendsPlus\\": "app/"
         }
     },
     "autoload-dev": {

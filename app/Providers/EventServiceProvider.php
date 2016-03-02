@@ -1,6 +1,6 @@
 <?php
 
-namespace SocialNetwork\Providers;
+namespace FriendsPlus\Providers;
 
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -13,8 +13,8 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'SocialNetwork\Events\SomeEvent' => [
-            'SocialNetwork\Listeners\EventListener',
+        'FriendsPlus\Events\SomeEvent' => [
+            'FriendsPlus\Listeners\EventListener',
         ],
     ];
 

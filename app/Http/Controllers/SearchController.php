@@ -1,13 +1,13 @@
 <?php
 
-namespace SocialNetwork\Http\Controllers;
+namespace FriendsPlus\Http\Controllers;
 
 use DB;
-use SocialNetwork\Models\User;
+use FriendsPlus\Models\User;
 use Illuminate\Http\Request;
 
-use SocialNetwork\Http\Requests;
-use SocialNetwork\Http\Controllers\Controller;
+use FriendsPlus\Http\Requests;
+use FriendsPlus\Http\Controllers\Controller;
 
 class SearchController extends Controller
 {

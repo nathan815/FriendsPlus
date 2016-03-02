@@ -1,6 +1,6 @@
 <?php
 
-namespace SocialNetwork\Console;
+namespace FriendsPlus\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;

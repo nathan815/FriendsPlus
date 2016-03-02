@@ -11,7 +11,7 @@
 |
 */
 
-$factory->define(SocialNetwork\User::class, function (Faker\Generator $faker) {
+$factory->define(FriendsPlus\User::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->email,

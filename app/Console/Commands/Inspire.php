@@ -1,6 +1,6 @@
 <?php
 
-namespace SocialNetwork\Console\Commands;
+namespace FriendsPlus\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Foundation\Inspiring;

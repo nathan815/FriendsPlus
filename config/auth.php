@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => SocialNetwork\Models\User::class,
+            'model' => FriendsPlus\Models\User::class,
         ],
 
         // 'users' => [

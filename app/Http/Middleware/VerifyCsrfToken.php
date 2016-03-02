@@ -1,6 +1,6 @@
 <?php
 
-namespace SocialNetwork\Http\Middleware;
+namespace FriendsPlus\Http\Middleware;
 
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;
 

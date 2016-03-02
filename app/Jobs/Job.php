@@ -1,6 +1,6 @@
 <?php
 
-namespace SocialNetwork\Jobs;
+namespace FriendsPlus\Jobs;
 
 use Illuminate\Bus\Queueable;
 

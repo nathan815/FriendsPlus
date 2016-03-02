@@ -1,6 +1,6 @@
 <?php
 
-namespace SocialNetwork\Http\Requests;
+namespace FriendsPlus\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 

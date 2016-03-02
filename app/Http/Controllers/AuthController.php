@@ -1,14 +1,14 @@
 <?php
 
-namespace SocialNetwork\Http\Controllers;
+namespace FriendsPlus\Http\Controllers;
 
 use Illuminate\Auth\AuthManager;
 use Illuminate\Http\Request;
 use Session;
 
-use SocialNetwork\Http\Requests\SignUpRequest;
-use SocialNetwork\Http\Controllers\Controller;
-use SocialNetwork\Models\User;
+use FriendsPlus\Http\Requests\SignUpRequest;
+use FriendsPlus\Http\Controllers\Controller;
+use FriendsPlus\Models\User;
 
 class AuthController extends Controller
 {

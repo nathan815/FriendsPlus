@@ -1,6 +1,6 @@
 <?php
 
-namespace SocialNetwork\Models;
+namespace FriendsPlus\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 

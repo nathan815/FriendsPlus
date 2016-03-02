@@ -1,6 +1,6 @@
 <?php
 
-namespace SocialNetwork\Exceptions;
+namespace FriendsPlus\Exceptions;
 
 use Exception;
 use Illuminate\Validation\ValidationException;

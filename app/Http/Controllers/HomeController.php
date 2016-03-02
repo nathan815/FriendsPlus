@@ -1,12 +1,12 @@
 <?php
 
-namespace SocialNetwork\Http\Controllers;
+namespace FriendsPlus\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
 
-use SocialNetwork\Http\Requests;
-use SocialNetwork\Http\Controllers\Controller;
+use FriendsPlus\Http\Requests;
+use FriendsPlus\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {

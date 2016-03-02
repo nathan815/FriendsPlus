@@ -1,6 +1,6 @@
 <?php
 
-namespace SocialNetwork\Http;
+namespace FriendsPlus\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -24,11 +24,11 @@ class Kernel extends HttpKernel
      */
     protected $middlewareGroups = [
         'web' => [
-            \SocialNetwork\Http\Middleware\EncryptCookies::class,
+            \FriendsPlus\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-            \SocialNetwork\Http\Middleware\VerifyCsrfToken::class,
+            \FriendsPlus\Http\Middleware\VerifyCsrfToken::class,
         ],
 
         'api' => [
@@ -44,9 +44,9 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        'auth' => \SocialNetwork\Http\Middleware\Authenticate::class,
+        'auth' => \FriendsPlus\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        'guest' => \SocialNetwork\Http\Middleware\RedirectIfAuthenticated::class,
+        'guest' => \FriendsPlus\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
     ];
 }

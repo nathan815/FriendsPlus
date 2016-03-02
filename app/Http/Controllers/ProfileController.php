@@ -1,13 +1,13 @@
 <?php
 
-namespace SocialNetwork\Http\Controllers;
+namespace FriendsPlus\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
 
-use SocialNetwork\Http\Requests;
-use SocialNetwork\Http\Controllers\Controller;
-use SocialNetwork\Models\User;
+use FriendsPlus\Http\Requests;
+use FriendsPlus\Http\Controllers\Controller;
+use FriendsPlus\Models\User;
 
 class ProfileController extends Controller
 {
@@ -22,11 +22,16 @@ class ProfileController extends Controller
     private $template_data = [];
 
     public function getProfile($username, $tab = 'posts') {
-      $user = User::where('username', $username)->first();
+      $is_owner = Auth::check() && ($username== Auth::user()->username);
+      if($is_owner) {
+        $user = Auth::user();
+      }
+      else {
+        $user = User::where('username', $username)->first();
+      }
       if(!$user || !array_key_exists($tab, $this->tabs)) {
         abort(404);
       }
-      $is_owner = Auth::check() && ($user->id == Auth::user()->id);
       $this->template_data = [
         'user' => $user,
         'current_tab' => $tab,

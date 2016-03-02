@@ -1,8 +1,8 @@
 <?php
 
-namespace SocialNetwork\Http\Controllers\Auth;
+namespace FriendsPlus\Http\Controllers\Auth;
 
-use SocialNetwork\Http\Controllers\Controller;
+use FriendsPlus\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
 class PasswordController extends Controller
