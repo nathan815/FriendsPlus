@@ -27,33 +27,29 @@
 
 @section('sidebar')
   <div class="white-box filters">
-    <h4>Search</h4>
+    <h4>Search Filters</h4>
     <form action="{{ route('search.results') }}" method="get">
       
       <h6>Information</h6>
       <div class="form-group">
-        <label for="q">Full Name/Username</label>
-        <input type="text" class="form-control text-bold" name="q" value="{{ $query }}" placeholder="Full Name/Username" autofocus autocomplete="off" />
+        <label for="q">Full Name/Username:</label>
+        <input type="text" required class="form-control text-bold" name="q" value="{{ $query }}" placeholder="Full Name/Username" id="q" autofocus autocomplete="off" />
       </div>
 
       <div class="form-group">
-        <label for="location">Location</label>
+        <label for="location">Location:</label>
         <input type="text" class="form-control" name="location" value="{{ $location }}" id="location" placeholder="Location" autocomplete="off" />
       </div>
 
       <div class="form-group">
-        <label for="gender">Gender</label>
+        <label for="gender">Gender:</label>
         <select name="gender" class="form-control" value="" id="gender">
           
-          <option value="0"{{ $gender ?: ' selected' }}>Choose Gender</option>
+          <option value="0">Choose Gender</option>
           
-          <option value="male"{{$gender == 'male' ? ' selected' : '' }}>Male</option>
-
-          <option value="female"{{$gender == 'female' ? ' selected' : '' }}>Female</option>
-          
-          <option value="other"{{$gender == 'other' ? ' selected' : '' }}>Other</option>
-          
-          <option value="not_set"{{$gender == 'not_set' ? ' selected' : '' }}>Not Set</option>
+          @foreach($user->GenderOptions as $key => $value)
+          <option value="{{ $key }}" {{$gender == $key ? 'selected' : '' }}>{{ $value }}</option>
+          @endforeach
 
         </select>
       </div>
@@ -64,8 +60,16 @@
         <label for="order_relevance">Relevance</label>
       </div>
       <div class="form-group">
+        <input type="radio" name="order" value="join_date" id="order_join_date" {{ $order == 'join_date' ? 'checked' : '' }} />
+        <label for="order_join_date">Joined (Newest First)</label>
+      </div>
+      <div class="form-group">
         <input type="radio" name="order" value="alpha" id="order_alpha" {{ $order == 'alpha' ? 'checked' : '' }} />
-        <label for="order_alpha">Alphabetical</label>
+        <label for="order_alpha">Alphabetical (A-Z)</label>
+      </div>
+      <div class="form-group">
+        <input type="radio" name="order" value="alpha_reverse" id="order_alpha_reverse" {{ $order == 'alpha_reverse' ? 'checked' : '' }} />
+        <label for="order_alpha_reverse">Reverse Alphabetical (Z-A)</label>
       </div>
 
       <hr />
