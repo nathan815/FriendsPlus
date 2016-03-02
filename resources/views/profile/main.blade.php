@@ -13,7 +13,11 @@
   <div class="cover-photo">
     <div class="cover-photo-container">
       <img class="cover" src="http://wowslider.com/sliders/demo-10/data/images/autumn_leaves.jpg" />
+      
+      @if($is_owner)
       <button class="btn btn-default btn-sm change">Change Cover</button>
+      @endif
+
       <div class="overlay"></div>
     </div>
 
@@ -23,7 +27,7 @@
       @if(Auth::check())
       <div class="actions pull-right">
         
-        @if($user->id == Auth::user()->id)
+        @if($is_owner)
         <button class="btn btn-default">Edit Profile</button>
         @else
         <button class="btn btn-primary">Add Friend</button>
@@ -51,11 +55,13 @@
 
   <div class="profile-nav">
     <ul class="nav nav-pills nav-sm">
-      <li class="{{ $tab == 'posts' ? 'active' : '' }}"><a href="{{ route('user.profile', [ $user->username ]) }}">Posts</a></li>
-      <li class="{{ $tab == 'pictures' ? 'active' : '' }}"><a href="{{ route('user.profile', [ $user->username, 'pictures' ]) }}">Pictures</a></li>
-      <li class="{{ $tab == 'friends' ? 'active' : '' }}"><a href="{{ route('user.profile', [ $user->username, 'friends' ]) }}">Friends</a></li>
-      <li class="{{ $tab == 'groups' ? 'active' : '' }}"><a href="{{ route('user.profile', [ $user->username, 'groups' ]) }}">Groups</a></li>
-      <li class="{{ $tab == 'info' ? 'active' : '' }}"><a href="{{ route('user.profile', [ $user->username, 'info' ]) }}">Info</a></li>
+
+      @foreach($tabs as $tab => $display_name)
+      <li class="{{ $tab == $current_tab ? 'active' : '' }}">
+        <a href="{{ route('user.profile', [ $user->username, $tab == 'posts' ? '' : $tab ]) }}">{{ $display_name }}</a>
+      </li>
+      @endforeach
+
     </ul>
   </div>
 
@@ -63,16 +69,9 @@
 
 
 <div class="row">
-  <div class="profile-sidebar col-md-4">
-    
-    <div class="white-box">
-      <b>About Me</b>
-      <p>{{ $user->bio }}</p>
-    </div>
-  </div>
-  <div class="col-md-8">
-    @include('posts.new_post_box')
-  </div>
+  
+  @include('profile.tabs.' . $current_tab)
+
 </div>
 
 @stop
