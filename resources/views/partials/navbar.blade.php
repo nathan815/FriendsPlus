@@ -69,7 +69,7 @@
                   Hi, <strong>{{ Auth::user()->getUsername() }}</strong> <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a href="/profile">
+                  <li><a href="{{ route('user.profile', [ Auth::user()->getUsername() ]) }}">
                     <strong>{{ Auth::user()->getName() }}</strong>
                     <br />
                     View Profile

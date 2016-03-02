@@ -1,0 +1,109 @@
+/**
+ * Profile CSS
+ */
+
+.header {
+  width: 100%;
+  position: relative;
+  padding: 0;
+  box-shadow: 0 0 4px #999;
+  border-radius: 5px;
+  background: white;
+  margin-bottom: 10px;
+}
+.header .cover-photo {
+  width: 100%;
+  height: 250px;
+  position: relative;
+}
+.header .cover-photo .cover-photo-container {
+  height: 250px;
+  overflow: hidden;
+  position: relative;
+}
+.header .cover-photo .cover-photo-container .overlay {
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  position: absolute;
+  top: 0;
+}
+.header .cover-photo img.cover {
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+.header .cover-photo .change {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity ease-in-out .25s;
+}
+.header .cover-photo:hover .change {
+  opacity: 1;
+}
+.header .infobar {
+  background-color: rgba(0, 0, 0, 0.6);
+  position: absolute;
+  bottom: 0;
+  z-index: 9;
+  width: 100%;
+  padding: 8px 8px 8px 180px;
+}
+.header .infobar h3,
+.header .infobar small {
+  color: #fff;
+  text-shadow: 0 0 5px #111;
+}
+.header .infobar small {
+  opacity: 0;
+  transition: opacity ease-in-out .25s;
+}
+.header .infobar:hover small {
+  opacity: 1;
+  font-weight: bold;
+  color: #eee;
+}
+.header .infobar h3 {
+  margin: 0;
+  font-size: 30px;
+}
+.header .infobar .dropdown {
+  display: inline-block;
+}
+.header .infobar .dropdown ul {
+  margin-top: 5px;
+}
+.header img.avatar {
+  width: 150px;
+  height: 150px;
+  box-shadow: 0 0 4px #111;
+  border-radius: 100%;
+  border: 3px solid white;
+  position: absolute;
+  top:  135px;
+  left: 15px;
+  z-index: 10;
+}
+
+.profile-nav {
+  padding: 5px 0 5px 180px;
+  background: white;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.profile-nav ul li a {
+  padding: 7px 10px;
+  font-size: 13px;
+}
+
+.profile-sidebar {
+  padding-right: 0;
+}
+.profile-sidebar .nav {
+  padding-top: 30px;
+}
