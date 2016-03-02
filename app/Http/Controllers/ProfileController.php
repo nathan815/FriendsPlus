@@ -59,26 +59,26 @@ class ProfileController extends Controller
 
     private function _tabPosts() {
       $this->template_data['posts'] = [];
-      return view('profile.main')->with($this->template_data);
+      return view('profile.tabs.posts')->with($this->template_data);
     }
 
     private function _tabPictures() {
       $this->template_data['pictures'] = [];
-      return view('profile.main')->with($this->template_data);
+      return view('profile.tabs.pictures')->with($this->template_data);
     }
 
     private function _tabFriends() {
       $this->template_data['posts'] = [];
-      return view('profile.main')->with($this->template_data);
+      return view('profile.tabs.friends')->with($this->template_data);
     }
 
     private function _tabGroups() {
       $this->template_data['groups'] = [];
-      return view('profile.main')->with($this->template_data);
+      return view('profile.tabs.groups')->with($this->template_data);
     }
 
     private function _tabInfo() {
-      return view('profile.main')->with($this->template_data);
+      return view('profile.tabs.info')->with($this->template_data);
     }
 
 }

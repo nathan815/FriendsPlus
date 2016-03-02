@@ -28,7 +28,7 @@
       <div class="actions pull-right">
         
         @if($is_owner)
-          <button class="btn btn-default">Edit Profile</button>
+          <a href="{{ route('settings.profile') }}" class="btn btn-default">Edit Profile</a>
         @else
 
           @if(true)
@@ -77,7 +77,13 @@
 
 <div class="row">
   
-  @include('profile.tabs.' . $current_tab)
+  <div class="profile-sidebar col-md-4">
+    @yield('tab_sidebar')
+  </div>
+
+  <div class="col-md-8">
+    @yield('tab_content')
+  </div>
 
 </div>
 

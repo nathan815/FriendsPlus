@@ -1,10 +1,10 @@
-@extends('profile.tabs.template')
+@extends('profile.main')
 
-@section('profile_content')
+@section('tab_content')
 groups
 @stop
 
-@section('profile_sidebar')
+@section('tab_sidebar')
 <div class="white-box">
   <b>About Me</b>
   <p>{{ $user->bio }}</p>

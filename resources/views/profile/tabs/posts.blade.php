@@ -1,12 +1,12 @@
-@extends('profile.tabs.template')
+@extends('profile.main')
 
-@section('profile_content')
+@section('tab_content')
 
   @include('posts.new_post_box')
 
 @stop
 
-@section('profile_sidebar')
+@section('tab_sidebar')
   
   @include('profile.sidebar_modules.mutual_friends')
   @include('profile.sidebar_modules.pictures')
@@ -16,5 +16,5 @@
     <b>About Me</b>
     <p>{{ $user->bio }}</p>
   </div>
-  
+
 @stop
