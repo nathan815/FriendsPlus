@@ -28,10 +28,13 @@
       <div class="actions pull-right">
         
         @if($is_owner)
-          <a href="{{ route('settings.profile') }}" class="btn btn-default">Edit Profile</a>
+          <a href="{{ route('settings.profile') }}" class="btn btn-default">
+            <span class="glyphicon glyphicon-pencil"></span>
+            Edit Profile
+          </a>
         @else
 
-          @if(true)
+          @if(false)
             <button class="btn btn-primary">Message</button>
             <button class="btn btn-danger">Unfriend</button>
           @else
