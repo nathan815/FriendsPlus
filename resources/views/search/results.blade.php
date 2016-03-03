@@ -43,7 +43,17 @@
 
       <div class="form-group">
         <label for="gender">Gender:</label>
-        @include('user.gender_dropdown')
+        
+        <select name="gender" class="form-control" id="gender">
+          
+          <option value="0">Choose Gender</option>
+          
+          @foreach($user->GenderOptions as $key => $value)
+          <option value="{{ $key }}" {{ $gender == $key ? 'selected' : '' }}>{{ $value }}</option>
+          @endforeach
+
+        </select>
+
       </div>
         
       <h6>Order</h6>

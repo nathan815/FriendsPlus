@@ -50,8 +50,18 @@
           @endif
         </div>
         <div class="form-group{{ $errors->has('gender') ? ' has-error' : '' }}">
+        
           <label>Gender</label>
-          @include('user.gender_dropdown')
+          <select name="gender" class="form-control" id="gender">
+            
+            <option value="0">Choose Gender</option>
+            
+            @foreach($user->GenderOptions as $key => $value)
+            <option value="{{ $key }}" {{ (old('gender') == $key) || ($user->gender == $key) ? 'selected' : '' }}>{{ $value }}</option>
+            @endforeach
+
+          </select>
+
           @if($errors->has('gender')) 
             <span class="help-block">{{ $errors->first('gender') }}</span>
           @endif
