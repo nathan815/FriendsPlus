@@ -49,6 +49,9 @@ button {
 .sidebar {
   padding-left: 0;
 }
+.left-sidebar {
+  padding-right: 0;
+}
 
 .footer {
   padding: 10px;

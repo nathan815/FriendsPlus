@@ -22,7 +22,7 @@ class ProfileController extends Controller
     private $template_data = [];
 
     public function getProfile($username, $tab = 'posts') {
-      $is_owner = Auth::check() && ($username== Auth::user()->username);
+      $is_owner = Auth::check() && ($username == Auth::user()->username);
       if($is_owner) {
         $user = Auth::user();
       }

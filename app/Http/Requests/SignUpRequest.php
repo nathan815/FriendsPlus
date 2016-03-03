@@ -32,7 +32,7 @@ class SignUpRequest extends Request
     public function rules()
     {
         return [
-          'full_name' => 'required|regex:/^[\pL\s]+$/u',
+          'full_name' => 'required',
           'email' => 'required|unique:users|email|max:255',
           'username' => 'required|unique:users|alpha_dash|max:15',
           'password' => 'required|min:6',

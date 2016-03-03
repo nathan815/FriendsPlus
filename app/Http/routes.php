@@ -102,4 +102,39 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     'as' => 'search.results'
   ]);
 
+  /**
+   * Settings pages
+   */
+  Route::get('/settings', [
+    'uses' => 'SettingsController@getAccount',
+    'as' => 'settings.account'
+  ]);
+  Route::post('/settings', [
+    'uses' => 'SettingsController@postAccount'
+  ]);
+
+  Route::get('/settings/profile', [
+    'uses' => 'SettingsController@getProfile',
+    'as' => 'settings.profile'
+  ]);
+  Route::post('/settings/profile', [
+    'uses' => 'SettingsController@postProfile',
+  ]);
+
+  Route::get('/settings/password', [
+    'uses' => 'SettingsController@getPassword',
+    'as' => 'settings.password'
+  ]);
+  Route::post('/settings/password', [
+    'uses' => 'SettingsController@postPassword'
+  ]);
+
+  Route::get('/settings/emails', [
+    'uses' => 'SettingsController@getEmails',
+    'as' => 'settings.emails'
+  ]);
+  Route::post('/settings/emails', [
+    'uses' => 'SettingsController@postEmails'
+  ]);
+
 });
