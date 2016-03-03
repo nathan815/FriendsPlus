@@ -15,7 +15,7 @@
       <img class="cover" src="http://wowslider.com/sliders/demo-10/data/images/autumn_leaves.jpg" />
       
       @if($is_owner)
-      <button class="btn btn-default btn-sm change">Change Cover</button>
+      <button class="btn btn-default btn-sm change"><span class="glyphicon glyphicon-picture"></span> Change Cover</button>
       @endif
 
       <div class="overlay"></div>
