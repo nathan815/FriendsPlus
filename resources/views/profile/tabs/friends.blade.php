@@ -1,7 +1,17 @@
 @extends('profile.main')
 
 @section('tab_content')
-friends
+
+  @if($user->friends()->count())
+    @foreach($user->friends() as $userblock_info)
+      @include('user.userblock')
+    @endforeach
+  @else
+    <div class="white-box">
+      <p>{{ $user->username }} does not have any friends at the moment.</p>
+    </div>
+  @endif
+
 @stop
 
 @section('tab_sidebar')
