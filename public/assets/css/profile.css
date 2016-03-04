@@ -35,7 +35,7 @@
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
 }
-.header .cover-photo .change {
+.header .cover-photo .dropdown.change-cover {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -43,8 +43,11 @@
   opacity: 0;
   transition: opacity ease-in-out .25s;
 }
-.header .cover-photo:hover .change {
+.header .cover-photo:hover .dropdown.change-cover {
   opacity: 1;
+}
+.header .cover-photo .dropdown.change-cover .dropdown-menu {
+  margin-top: 2px;
 }
 .header .infobar {
   background-color: rgba(0, 0, 0, 0.6);

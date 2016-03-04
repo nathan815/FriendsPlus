@@ -15,7 +15,13 @@
       <img class="cover" src="http://wowslider.com/sliders/demo-10/data/images/autumn_leaves.jpg" />
       
       @if($is_owner)
-      <button class="btn btn-default btn-sm change"><span class="glyphicon glyphicon-picture"></span> Change Cover</button>
+      <div class="dropdown change-cover">
+        <button data-toggle="dropdown" class="btn btn-default btn-sm change dropdown-toggle"><span class="glyphicon glyphicon-picture"></span> Change Cover</button>
+        <ul class="dropdown-menu dropdown-menu-right">
+          <li><a href="#">Upload New Cover</a></li>
+          <li><a href="#">Remove Current Cover</a></li>
+        </ul>
+      </div>
       @endif
 
       <div class="overlay"></div>
@@ -34,7 +40,7 @@
           </a>
         @else
 
-          @if(false)
+          @if(true)
             <button class="btn btn-primary">Message</button>
             <button class="btn btn-danger">Unfriend</button>
           @else

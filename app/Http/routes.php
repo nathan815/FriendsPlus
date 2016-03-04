@@ -137,4 +137,14 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     'uses' => 'SettingsController@postEmails'
   ]);
 
+  Route::get('/users/{username}/friend/add', [
+    'uses' => 'FriendRequestController@getAdd',
+    'as' => 'user.friend.add'
+  ]);
+
+  Route::get('/users/{username}/friend/delete', [
+    'uses' => 'FriendRequestController@getDelete',
+    'as' => 'user.friend.delete'
+  ]);
+
 });

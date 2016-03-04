@@ -24,7 +24,7 @@
                 <a href="/messages" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                   <span class="glyphicon glyphicon-envelope"></span> 
                   <span class="hidden-sm">Messages</span>
-                  <span class="label label-warning">10</span>
+                  <span class="label label-warning">3</span>
                 </a>
                 <ul class="dropdown-menu">
                   <li class="dropdown-header"><img src="/assets/img/navbar_loading.gif" /> Loading...</li>
@@ -34,7 +34,7 @@
                 <a href="/requests" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                   <span class="glyphicon glyphicon-user"></span> 
                   <span class="hidden-sm">Requests</span>
-                  <span class="label label-warning">2</span> 
+                  <span class="label label-warning">20</span> 
                 </a>
                 <ul class="dropdown-menu">
                   <li class="dropdown-header"><img src="/assets/img/navbar_loading.gif" /> Loading...</li>
