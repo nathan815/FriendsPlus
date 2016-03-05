@@ -31,7 +31,7 @@
                 </ul>
               </li>
               <li class="dropdown">
-                <a href="/requests" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <a href="{{ route('user.friend.requests') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                   <span class="glyphicon glyphicon-user"></span> 
                   <span class="hidden-sm">Requests</span>
                   <span class="label label-warning">20</span> 
@@ -66,11 +66,11 @@
 
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                  Hi, <strong>{{ Auth::user()->getUsername() }}</strong> <span class="caret"></span>
+                  Hi, <strong>{{ Auth::user()->username }}</strong> <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a href="{{ route('user.profile', [ Auth::user()->getUsername() ]) }}">
-                    <strong>{{ Auth::user()->getName() }}</strong>
+                  <li><a href="{{ route('user.profile', [ Auth::user()->username ]) }}">
+                    <strong>{{ Auth::user()->name }}</strong>
                     <br />
                     View Profile
                   </a></li>

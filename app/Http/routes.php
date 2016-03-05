@@ -137,14 +137,41 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     'uses' => 'SettingsController@postEmails'
   ]);
 
-  Route::get('/users/{username}/friend/add', [
-    'uses' => 'FriendRequestController@getAdd',
+  /**
+   * Add/delete friends
+   */
+  Route::post('/friend/add', [
+    'uses' => 'FriendRequestController@postAdd',
     'as' => 'user.friend.add'
   ]);
 
-  Route::get('/users/{username}/friend/delete', [
-    'uses' => 'FriendRequestController@getDelete',
+  Route::post('/friend/delete', [
+    'uses' => 'FriendRequestController@postDelete',
     'as' => 'user.friend.delete'
+  ]);
+
+  /**
+   * Accept/reject/cancel requests
+   */
+  Route::post('/friend/request/accept', [
+    'uses' => 'FriendRequestController@postAccept',
+    'as' => 'user.friend.accept'
+  ]);
+  Route::post('/friend/request/deny', [
+    'uses' => 'FriendRequestController@postDeny',
+    'as' => 'user.friend.deny'
+  ]);
+  Route::post('/friend/request/cancel', [
+    'uses' => 'FriendRequestController@postCancel',
+    'as' => 'user.friend.cancel'
+  ]);
+
+  /**
+   * Friend requests page
+   */
+  Route::get('/friend/requests/{type?}', [
+    'uses' => 'FriendRequestController@getRequests',
+    'as' => 'user.friend.requests'
   ]);
 
 });

@@ -74,22 +74,6 @@ class User extends Authenticatable
                  ->orWhere('username', 'like', "%{$query}%");
     }
 
-    /**
-     * Get user's name
-     * @return string Name
-     */
-    public function getName() {
-        return $this->name;
-    }
-
-    /**
-     * Get user's username
-     * @return string Username
-     */
-    public function getUsername() {
-        return $this->username;
-    }
-
     public function getGender() {
         if(isset($this->GenderOptions[$this->gender])) 
             return $this->GenderOptions[$this->gender];
@@ -120,6 +104,26 @@ class User extends Authenticatable
     public function friends() {
         return $this->friendsOfMine()->wherePivot('accepted', true)->get()
                     ->merge($this->friendOf()->wherePivot('accepted', true)->get());
+    }
+
+    public function friendRequests() {
+        return $this->friendOf()->wherePivot('accepted', false)->get();
+    }
+
+    public function friendRequestsSent() {
+        return $this->friendsOfMine()->wherePivot('accepted', false)->get();
+    }
+
+    public function hasFriendRequestFrom(User $user) {
+        return (bool) $this->friendRequests()->where('id', $user->id)->count();
+    }
+
+    public function hasFriendRequestSentByMe(User $user) {
+        return (bool) $this->friendRequestsSent()->where('id', $user->id)->count();
+    }
+
+    public function friendsWith(User $user) {
+        return (bool) $this->friends()->where('id', $user->id)->count();
     }
 
 }
