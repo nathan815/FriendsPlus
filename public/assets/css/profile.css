@@ -74,12 +74,18 @@
 .header .infobar h3 {
   margin: 0;
   font-size: 30px;
+  white-space: nowrap;
 }
 .header .infobar .dropdown {
   display: inline-block;
 }
 .header .infobar .dropdown ul {
   margin-top: 5px;
+}
+.header .infobar .actions {
+  position: absolute;
+  top: 7px;
+  right: 6px;
 }
 .header img.avatar {
   width: 150px;

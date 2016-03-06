@@ -3,7 +3,7 @@
 @section('tab_content')
 
   @if($user->friends()->count())
-    @foreach($user->friends() as $userblock_info)
+    @foreach($user->friends() as $userblock_user)
       @include('user.userblock')
     @endforeach
   @else

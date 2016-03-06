@@ -17,7 +17,7 @@
   </div>
   
   @if($friend_requests->count())
-    @foreach($friend_requests as $userblock_info)
+    @foreach($friend_requests as $userblock_user)
       @include('user.userblock')
     @endforeach
   @else

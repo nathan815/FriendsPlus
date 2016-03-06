@@ -94,36 +94,84 @@ class User extends Authenticatable
     }
 
     public function friendsOfMine() {
-        return $this->belongsToMany('\FriendsPlus\Models\User', 'friends', 'user_id', 'friend_id');
+        return $this->belongsToMany(
+            '\FriendsPlus\Models\User', 
+            'friends', 
+            'user_id', 
+            'friend_id'
+        );
     }
 
     public function friendOf() {
-        return $this->belongsToMany('\FriendsPlus\Models\User', 'friends', 'friend_id', 'user_id');
+        return $this->belongsToMany(
+            '\FriendsPlus\Models\User', 
+            'friends', 
+            'friend_id', 
+            'user_id'
+        );
     }
 
     public function friends() {
-        return $this->friendsOfMine()->wherePivot('accepted', true)->get()
-                    ->merge($this->friendOf()->wherePivot('accepted', true)->get());
+        return $this->friendsOfMine()
+            ->wherePivot('accepted', true)
+            ->get()
+            ->merge($this->friendOf()
+            ->wherePivot('accepted', true)
+            ->get());
     }
 
     public function friendRequests() {
-        return $this->friendOf()->wherePivot('accepted', false)->get();
+        return $this->friendOf()
+            ->wherePivot('accepted', false)
+            ->get();
     }
 
     public function friendRequestsSent() {
-        return $this->friendsOfMine()->wherePivot('accepted', false)->get();
+        return $this->friendsOfMine()
+            ->wherePivot('accepted', false)
+            ->get();
     }
 
     public function hasFriendRequestFrom(User $user) {
-        return (bool) $this->friendRequests()->where('id', $user->id)->count();
+        return (bool) $this->friendRequests()
+            ->where('id', $user->id)
+            ->count();
     }
 
-    public function hasFriendRequestSentByMe(User $user) {
-        return (bool) $this->friendRequestsSent()->where('id', $user->id)->count();
+    public function hasFriendRequestReceived(User $user) {
+        return (bool) $this->friendRequestsSent()
+            ->where('id', $user->id)
+            ->count();
     }
 
-    public function friendsWith(User $user) {
+    public function isFriendsWith(User $user) {
         return (bool) $this->friends()->where('id', $user->id)->count();
+    }
+
+    public function addFriend(User $user) {
+        return $this->friendsOfMine()->attach($user->id);
+    }
+
+    public function deleteFriend(User $user) {
+        $this->friendOf()->detach($user->id);
+        $this->friendsOfMine()->detach($user->id);
+    }
+
+    public function cancelFriendRequest(User $user) {
+        return $this->friendsOfMine()->detach($user->id);
+    }
+
+    public function acceptFriendRequest(User $user) {
+        return $this->friendRequests()
+                    ->where('id', $user->id)
+                    ->first()
+                    ->pivot->update([
+                        'accepted' => true 
+                    ]);
+    }
+
+    public function denyFriendRequest(User $user) {
+        $this->deleteFriend($user);
     }
 
 }

@@ -13,7 +13,7 @@
 </div>
 
 @if($count)
-  @foreach($users as $userblock_info)
+  @foreach($users as $userblock_user)
     @include('user.userblock')
   @endforeach
 @else

@@ -3,84 +3,58 @@
   @if(Auth::check()) 
 
     <div class="pull-right">
-    @if(Auth::user()->hasFriendRequestFrom($userblock_info))
-      
-      @if(Route::is('user.friend.requests'))
-      <form action="{{ route('user.friend.accept') }}" method="post">
-        {{ csrf_field() }}
-        <input type="hidden" name="username" value="{{ $userblock_info->username }}" />
-        <button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-ok"></span> Accept</button>&nbsp;
-      </form>
-      <form action="{{ route('user.friend.deny') }}" method="post">
-        {{ csrf_field() }}
-        <input type="hidden" name="username" value="{{ $userblock_info->username }}" />
-        <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Delete</button>
-      </form>
-      @else
-      <div class="dropdown">
-        <button class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown">Pending <span class="glyphicon glyphicon-menu-down"></span></button>
-        <ul class="dropdown-menu dropdown-menu-right">
-          <li><a href="#" class="accept-friend-request" data-username="{{ $userblock_info->username }}">Accept Friend Request</a></li>
-          <li><a href="#" class="deny-friend-request" data-username="{{ $userblock_info->username }}">Delete Friend Request</a></li>
-        </ul>
-      </div>
-      @endif
-
-    @elseif(Auth::user()->hasFriendRequestSentByMe($userblock_info))
-      <form action="{{ route('user.friend.cancel') }}" method="post">
-        {{ csrf_field() }}
-        <input type="hidden" name="username" value="{{ $userblock_info->username }}" />
-        <button class="btn btn-info btn-sm"><span class="glyphicon glyphicon-remove"></span> Cancel Request</button>
-      </form>
-    @elseif(Auth::user()->friendsWith($userblock_info))
-      <form action="{{ route('user.friend.delete') }}" method="post">
-        {{ csrf_field() }}
-        <input type="hidden" name="username" value="{{ $userblock_info->username }}" />
-        <button class="btn btn-success btn-sm"><span class="glyphicon glyphicon-ok"></span> Friends</button>
-      </form>
-    @elseif(Auth::user()->id != $userblock_info->id)
-      <form action="{{ route('user.friend.add') }}" method="post">
-        {{ csrf_field() }}
-        <input type="hidden" name="username" value="{{ $userblock_info->username }}" />
-        <button class="btn btn-primary btn-sm">Add Friend</button>
-      </form>
-    @else
+    @if(Auth::user()->id === $userblock_user->id)
       <a href="{{ route('settings.profile') }}" class="btn btn-default btn-sm">Edit Profile</a>
+    @elseif(Auth::user()->hasFriendRequestFrom($userblock_user))
+      <button class="btn btn-primary btn-sm" data-friend-btn="accept" data-username="{{ $userblock_user->username }}">
+        <span class="glyphicon glyphicon-ok"></span> Confirm Friend
+      </button>
+      <button class="btn btn-danger btn-sm" data-friend-btn="deny" data-username="{{ $userblock_user->username }}">
+        <span class="glyphicon glyphicon-remove"></span> Deny
+      </button>
+    @elseif($userblock_user->hasFriendRequestFrom(Auth::user()))
+      <button class="btn btn-danger btn-sm" data-friend-btn="cancel" data-username="{{ $userblock_user->username }}">Cancel Request</button>
+    @elseif(Auth::user()->isFriendsWith($userblock_user))
+      <button class="btn btn-success btn-sm" data-friend-btn="delete" data-username="{{ $userblock_user->username }}" data-hover-text="Unfriend" data-hover-toggle-class="btn-danger btn-success">
+        <span class="glyphicon glyphicon-ok"></span> Friend
+      </button>
+    @else
+      <button class="btn btn-primary btn-sm" data-friend-btn="add" data-username="{{ $userblock_user->username }}">Add Friend</button>
     @endif
     </div>
 
   @endif
   
-  <a class="pull-left" href="{{ route('user.profile', $userblock_info->username ) }}">
-    <img class="media-object img-rounded" alt="{{ $userblock_info->username }}" src="{{ $userblock_info->getAvatarUrl(90) }}">
+  <a class="pull-left" href="{{ route('user.profile', $userblock_user->username ) }}">
+    <img class="media-object img-rounded" alt="{{ $userblock_user->username }}" src="{{ $userblock_user->getAvatarUrl(90) }}">
   </a>
   
   <div class="media-body">
 
     <h4 class="media-heading">
-      <a href="{{ route('user.profile', [$userblock_info->username ]) }}">
-        <span>{{ $userblock_info->name }}</span>
-        <small>{{ "@".$userblock_info->username }}</small>
+      <a href="{{ route('user.profile', [$userblock_user->username ]) }}">
+        <span>{{ $userblock_user->name }}</span>
+        <small>{{ "@".$userblock_user->username }}</small>
       </a>
     </h4>
 
     <p>
       <b>Location:</b>
-      @if($userblock_info->location)
-      {{ $userblock_info->location }}
+      @if($userblock_user->location)
+      {{ $userblock_user->location }}
       @else
       <em>No location set.</em>
       @endif
 
-      @if($userblock_info->gender)
-      | <b>Gender:</b> {{ $userblock_info->GenderOptions[$userblock_info->gender] }}
+      @if($userblock_user->gender)
+      | <b>Gender:</b> {{ $userblock_user->GenderOptions[$userblock_user->gender] }}
       @endif
     </p>
 
     <p>
       <b>Bio:</b>
-      @if($userblock_info->bio)
-      {{ str_limit($userblock_info->bio, 100) }}
+      @if($userblock_user->bio)
+      {{ str_limit($userblock_user->bio, 100) }}
       @else
       <em>No bio written yet.</em>
       @endif

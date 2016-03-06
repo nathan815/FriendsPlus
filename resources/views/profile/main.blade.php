@@ -28,10 +28,10 @@
     </div>
 
     <div class="infobar">
-      <h3 class="pull-left">{{ $user->name }} <small> {{ "@" . $user->username }}</small></h3>
+      <h3>{{ $user->name }} <small> {{ "@" . $user->username }}</small></h3>
     
       @if(Auth::check())
-      <div class="actions pull-right">
+      <div class="actions">
         
         @if($is_owner)
           <a href="{{ route('settings.profile') }}" class="btn btn-default">
@@ -40,11 +40,22 @@
           </a>
         @else
 
-          @if(true)
-            <button class="btn btn-primary">Message</button>
-            <button class="btn btn-danger">Unfriend</button>
+          @if(Auth::user()->isFriendsWith($user))
+            <button class="btn btn-primary" id="message-user">Message</button>
+            <button class="btn btn-success" data-friend-btn="delete" data-username="{{ $user->username }}" data-hover-text="Unfriend" data-hover-toggle-class="btn-danger btn-success">
+              <span class="glyphicon glyphicon-ok"></span> Friend
+            </button>
+
+          @elseif(Auth::user()->hasFriendRequestFrom($user))
+            <button class="btn btn-primary" data-friend-btn="accept" data-username="{{ $user->username }}"><span class="glyphicon glyphicon-ok"></span> Confirm Friend</button>
+            <button class="btn btn-danger" data-friend-btn="deny" data-username="{{ $user->username }}"><span class="glyphicon glyphicon-remove"></span> Deny</button>
+
+          @elseif($user->hasFriendRequestFrom(Auth::user()))
+            <button class="btn btn-danger" data-friend-btn="cancel" data-username="{{ $user->username }}">Cancel Request</button>
+
           @else
-            <button class="btn btn-primary">Add Friend</button>
+            <button class="btn btn-primary" data-friend-btn="add" data-username="{{ $user->username }}">Add Friend</button>
+
           @endif
 
           <div class="dropdown">
