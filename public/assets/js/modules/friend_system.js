@@ -94,7 +94,7 @@ function AcceptFriendRequest() {
       }
       _this.removeClass('btn-primary')
            .addClass('btn-success')
-           .html('<span class="glyphicon glyphicon-ok"></span> Friends')
+           .html('<span class="glyphicon glyphicon-ok"></span> Friend')
            .attr('data-friend-btn', 'delete');
       $('.btn[data-friend-btn="deny"][data-username="'+username+'"]').remove();
     }
