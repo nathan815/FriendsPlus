@@ -16,6 +16,16 @@ class User extends Authenticatable
         2 => 'Female',
         3 => 'Other'
     ];
+    public $GenderOptionsInverse = [
+        'Male' => 1,
+        'Female' => 2,
+        'Other' => 3
+    ];
+    public $PronounOwnership = [
+        1 => 'his',
+        2 => 'her',
+        3 => 'their'
+    ];
 
     /**
      * The attributes that are mass assignable.
@@ -28,7 +38,6 @@ class User extends Authenticatable
         'bio', 
         'location', 
         'email', 
-        'password',
         'gender',
         'website'
     ];
@@ -74,11 +83,25 @@ class User extends Authenticatable
                  ->orWhere('username', 'like', "%{$query}%");
     }
 
+    /**
+     * Get the user's gender
+     * @return int|null
+     */
     public function getGender() {
         if(isset($this->GenderOptions[$this->gender])) 
             return $this->GenderOptions[$this->gender];
         else 
             return null;
+    }
+
+    /**
+     * Get user's ownership pronoun (his, her, their)
+     * @return string Pronoun
+     */
+    public function getPronounOwnership() {
+        $gender = $this->gender;
+        if(!$gender) $gender = $this->GenderOptionsInverse['Other'];
+        return $this->PronounOwnership[$gender];
     }
 
     /**
@@ -93,9 +116,16 @@ class User extends Authenticatable
         return $url;
     }
 
+    public function statuses() {
+        return $this->hasMany(
+            'FriendsPlus\Models\Status',
+            'user_id'
+        );
+    }
+
     public function friendsOfMine() {
         return $this->belongsToMany(
-            '\FriendsPlus\Models\User', 
+            'FriendsPlus\Models\User', 
             'friends', 
             'user_id', 
             'friend_id'
@@ -104,7 +134,7 @@ class User extends Authenticatable
 
     public function friendOf() {
         return $this->belongsToMany(
-            '\FriendsPlus\Models\User', 
+            'FriendsPlus\Models\User', 
             'friends', 
             'friend_id', 
             'user_id'

@@ -108,3 +108,68 @@ button {
 .userblock form {
   display: inline;
 }
+
+/* Statuses */
+.status {
+  position: relative;
+}
+.status .media-heading .status-time, 
+.status .media-heading .status-time a
+{
+  font-size: 14px;
+  margin-top: 3px;
+  color: #777;
+}
+.status .media-heading {
+  font-size: 15px;
+  margin: 0;
+  line-height: 1
+}
+.status .media-heading a.username {
+  text-decoration: none;
+  font-weight: bold;
+}
+.status .media-heading a.username:hover span {
+  text-decoration: underline;
+} 
+.status .media-heading a small {
+  color: #888;
+  font-size: 85%;
+  font-weight: normal;
+}
+.status .status-body {
+  margin-top: 5px;
+  font-size: 15px;
+}
+.status .actions {
+  border-top: 1px solid #f5f5f5;
+  padding-top: 10px;
+}
+.status .actions .btn:not(:last-child) {
+  margin-right: 5px;
+}
+.status .actions .likes-dislikes {
+  display: inline;
+  margin-left: 10px;
+  line-height: 1.2;
+  font-size: 12px;
+  color: #333;
+}
+.status .actions .likes,
+.status .actions .dislikes
+ {
+  
+}
+.status .actions .likes a,
+.status .actions .dislikes a {
+  font-weight: bold;
+  color: inherit;
+}
+.status .dropdown {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+}
+.status .dropdown .dropdown-toggle {
+  color: #bbb;
+}

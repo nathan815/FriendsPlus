@@ -7,6 +7,7 @@ use Auth;
 
 use FriendsPlus\Http\Requests;
 use FriendsPlus\Http\Controllers\Controller;
+use FriendsPlus\Models\Status;
 
 class HomeController extends Controller
 {
@@ -33,7 +34,10 @@ class HomeController extends Controller
    * @return view
    */
   private function _feed() {
-    return view('feed');
+    $statuses = Status::statusesByFriendsAndMe();
+    return view('feed')->with([
+      'statuses' => $statuses
+    ]);
   }
 
 }

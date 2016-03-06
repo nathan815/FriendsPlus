@@ -2,7 +2,7 @@
 
 @section('tab_content')
 
-  @include('posts.new_post_box')
+  @include('status.new_status_box')
 
 @stop
 

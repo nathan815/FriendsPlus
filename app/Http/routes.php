@@ -174,4 +174,16 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     'as' => 'user.friend.requests'
   ]);
 
+  /**
+   * Statuses
+   */
+  Route::post('/status/new', [
+    'uses' => 'StatusController@postNew',
+    'as' => 'status.new'
+  ]);
+  Route::post('/status/view/{id}', [
+    'uses' => 'StatusController@getView',
+    'as' => 'status.view'
+  ]);
+
 });

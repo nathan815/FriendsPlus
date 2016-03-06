@@ -3,11 +3,21 @@
 
 @section('content')
 
-@include('posts.new_post_box')
+@include('status.new_status_box')
 
-<div class="white-box">
+<!--<div class="white-box">
   <span class="muted">You haven't added any friends yet.</span>
-</div>
+</div>-->
+
+@if(!$statuses->count())
+  <div class="white-box">
+    There aren't any statuses in your feed. Start by posting a status and adding some friends!
+  </div>
+@else
+  @foreach($statuses as $status) 
+    @include('status.status')
+  @endforeach
+@endif
 
 @stop
 
