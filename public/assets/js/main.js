@@ -16,8 +16,10 @@ $(document).ready(function() {
   // Change text and color of button on hover
   // Use data-hover-text and data-hover-toggle-class attributes
   $('.container').on('mouseenter', '.btn[data-hover-text]', function() {
-    $(this).data('orig-text', $(this).html())
-           .html($(this).data('hover-text'))
+    if(!$(this).data('orig-text')) {
+      $(this).data('orig-text', $(this).html());
+    }
+    $(this).html($(this).data('hover-text'))
            .toggleClass($(this).data('hover-toggle-class'));
   }).on('mouseout', '.btn[data-hover-text]', function() {
     $(this).html($(this).data('orig-text'))
