@@ -23,7 +23,8 @@
 
 @section('sidebar')
 
-  @include('sidebar_modules.online_friends')
-  @include('sidebar_modules.online_friends')
+  @include('sidebar_modules.user_info')
+  @include('sidebar_modules.friend_requests')
+  @include('sidebar_modules.suggested_people')
 
 @stop

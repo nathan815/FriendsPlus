@@ -109,9 +109,17 @@ button {
   display: inline;
 }
 
+.user-info a {
+  text-decoration: none;
+}
+
 /* Statuses */
 .status {
   position: relative;
+  padding: 0;
+}
+.status .status-content {
+  padding: 15px;
 }
 .status .media-heading .status-time, 
 .status .media-heading .status-time a
@@ -145,8 +153,16 @@ button {
   border-top: 1px solid #f5f5f5;
   padding-top: 10px;
 }
+.status .actions .btn {
+  box-shadow: none;
+  border: 1px solid #ddd;
+}
+.status .actions .btn.btn-success,
+.status .actions .btn.btn-danger {
+  border: 1px solid transparent;
+}
 .status .actions .btn:not(:last-child) {
-  margin-right: 5px;
+  margin-right: 3px;
 }
 .status .actions .likes-dislikes {
   display: inline;
@@ -154,11 +170,6 @@ button {
   line-height: 1.2;
   font-size: 12px;
   color: #333;
-}
-.status .actions .likes,
-.status .actions .dislikes
- {
-  
 }
 .status .actions .likes a,
 .status .actions .dislikes a {
@@ -172,4 +183,11 @@ button {
 }
 .status .dropdown .dropdown-toggle {
   color: #bbb;
+}
+.status .comments {
+  padding: 15px;
+  background: #f9f9f9;
+  border-top: 1px solid #eee;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
