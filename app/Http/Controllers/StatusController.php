@@ -16,12 +16,10 @@ class StatusController extends Controller
     public function postNew(NewStatusRequest $request) {
       $status = new Status;
       $status->user_id = Auth::user()->id;
-      $status->access_id = mt_rand(100000,99999999999);
+      $status->access_id = mt_rand(100,9999) . time() . mt_rand(100,9999);
       $status->body = $request->body;
       if($status->save()) {
-        return redirect()->back()->withAlert([
-          'type'=>'info','message'=>'Your status is posted.'
-        ]);
+        return redirect()->back();
       }
     }
 
