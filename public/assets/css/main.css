@@ -88,7 +88,9 @@ button {
   }
 }
 
-/* User block */
+/**********************
+      User Block 
+***********************/
 .userblock a {
   text-decoration: none;
 }
@@ -114,7 +116,9 @@ button {
   text-decoration: none;
 }
 
-/* New Status Box */
+/**********************
+    New Status Box
+***********************/
 .new-status textarea {
   border: 1px solid #ddd;
   padding: 10px;
@@ -142,7 +146,9 @@ button {
 }
 
 
-/* Statuses */
+/**********************
+        Statuses 
+***********************/
 .status {
   position: relative;
   padding: 0;
@@ -219,4 +225,28 @@ button {
   border-top: 1px solid #eee;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
+}
+.status .comments .new-comment textarea {
+  background: white;
+  padding: 5px 10px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  height: 45px;
+  font-size: 13px;
+  resize: none;
+  border-radius: 3px;
+  border: 1px solid #ddd;
+}
+.status .comment {
+  font-size: 13px;
+}
+.status .comment .media-heading {
+  font-size: 13px;
+  color: #888;
+}
+.status .comment .media-heading a {
+  font-weight: bold;
+}
+.status .comment .comment-body {
+  margin: 0;
 }

@@ -123,6 +123,13 @@ class User extends Authenticatable
         );
     }
 
+    public function comments() {
+        return $this->hasMany(
+            'FriendsPlus\Models\Comment',
+            'user_id'
+        );
+    }
+
     public function friendsOfMine() {
         return $this->belongsToMany(
             'FriendsPlus\Models\User', 

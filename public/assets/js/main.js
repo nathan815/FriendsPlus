@@ -26,5 +26,12 @@ $(document).ready(function() {
            .toggleClass($(this).data('hover-toggle-class'));
   });
 
+  $('.new-comment textarea').keydown(function(e) {
+    if(e.which === 13) {
+      e.preventDefault();
+      $(this).parent('form').submit();
+    }
+  });
+
 
 });

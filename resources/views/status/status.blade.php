@@ -51,26 +51,37 @@
   </div><!-- end .status-content -->
 
   <div class="comments">
+
+    @foreach($status->comments as $comment)
+      <div class="comment media">
+          <a class="pull-left" href="#">
+              <img class="media-object img-rounded" alt="" src="{{ $comment->user->getAvatarUrl(35) }}">
+          </a>
+          <div class="media-body">
+              <p class="media-heading">
+                <a href="#">{{ $comment->user->username }}</a> 
+                8 minutes ago
+              </p>
+              <p class="comment-body">{{ $comment->body }}</p>
+              <div class="actions">
+                <a href="#">Like</a>
+                &middot;
+                <span class="glyphicon glyphicon-thumbs-up"></span> 3
+              </div>
+          </div>
+      </div>
+    @endforeach
+
     <div class="media">
-        <a class="pull-left" href="#">
-            <img class="media-object" alt="" src="http://placehold.it/35x35">
-        </a>
-        <div class="media-body">
-            <h5 class="media-heading"><a href="#">Billy</a></h5>
-            <p>Yes, it is lovely!</p>
-            <ul class="list-inline">
-                <li>8 minutes ago.</li>
-                <li><a href="#">Like</a></li>
-                <li>4 likes</li>
-            </ul>
-        </div>
+      <img class="pull-left media-object img-rounded" src="{{ Auth::user()->getAvatarUrl(35) }}" />
+      <div class="media-body">
+        <form class="new-comment" role="form" action="{{ route('comment.new', [ 'status_id' => $status->access_id ]) }}" method="post">
+          {{ csrf_field() }}
+          <textarea name="body" class="form-control" rows="2" placeholder="Type a comment..."></textarea>
+        </form>
+      </div>
     </div>
-    <form role="form" action="#" method="post">
-        <div class="form-group">
-            <textarea name="reply-1" class="form-control" rows="2" placeholder="Reply to this status"></textarea>
-        </div>
-        <input type="submit" value="Reply" class="btn btn-default btn-sm">
-    </form>
+
   </div>
 
 </div>

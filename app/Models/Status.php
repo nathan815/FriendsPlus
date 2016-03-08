@@ -30,6 +30,10 @@ class Status extends Model
       return $this->belongsTo('FriendsPlus\Models\User', 'user_id');
     }
 
+    public function comments() {
+      return $this->hasMany('FriendsPlus\Models\Comment', 'status_id', 'id');
+    }
+
     public function isOwner() {
       return Auth::check() && $this->user->id === Auth::user()->id;
     }

@@ -181,9 +181,17 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     'uses' => 'StatusController@postNew',
     'as' => 'status.new'
   ]);
-  Route::post('/status/view/{id}', [
+  Route::get('/status/{id}', [
     'uses' => 'StatusController@getView',
     'as' => 'status.view'
+  ]);
+
+  /**
+   * Comments
+   */
+  Route::post('/status/{id}/comments/new', [
+    'uses' => 'CommentsController@postNew',
+    'as' => 'comment.new'
   ]);
 
 });
