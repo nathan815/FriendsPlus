@@ -21,11 +21,13 @@
       <ul class="dropdown-menu dropdown-menu-right">
 
         @if($status->isOwner())
-        <li><a href="#">Edit</a></li>
-        <li><a href="#">Delete</a></li>
+          <li><a href="#" class="edit-status">Edit</a></li>
+          <li><a href="#" class="delete-status">Delete</a></li>
         @else
-        <li><a href="#">Hide</a></li>
-        <li><a href="#">Report</a></li>
+          @if(Auth::check())
+            <li><a href="#" class="hide-status">Hide</a></li>
+          @endif
+          <li><a href="#" class="report-status">Report</a></li>
         @endif
 
       </ul>
@@ -58,6 +60,7 @@
       @endforeach
     </div>
 
+    @if(Auth::user()->isFriendsWith($status->user) || $status->isOwner())
     <div class="media">
       <img class="pull-left media-object img-rounded" src="{{ Auth::user()->getAvatarUrl(35) }}" />
       <div class="media-body">
@@ -67,6 +70,7 @@
         </form>
       </div>
     </div>
+    @endif
 
   </div>
 
