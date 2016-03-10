@@ -19,26 +19,25 @@ class ProfileController extends Controller
       'groups' => 'Groups', 
       'info' => 'Info'
     ];
+    private $user;
     private $view_data = [];
 
     public function getProfile($username, $tab = 'posts') {
       $is_owner = Auth::check() && ($username == Auth::user()->username);
       if($is_owner) {
-        $user = Auth::user();
+        $this->user = Auth::user();
       }
       else {
-        $user = User::where('username', $username)->first();
+        $this->user = User::where('username', $username)->first();
       }
-      if(!$user || !array_key_exists($tab, $this->tabs)) {
+      if(!$this->user || !array_key_exists($tab, $this->tabs)) {
         abort(404);
       }
-      $statuses = $user->statuses;
       $this->view_data = [
-        'user' => $user,
+        'user' => $this->user,
         'current_tab' => $tab,
         'tabs' => $this->tabs,
-        'is_owner' => $is_owner,
-        'statuses' => $statuses
+        'is_owner' => $is_owner
       ];
       switch($tab) {
         case 'posts':
@@ -60,7 +59,7 @@ class ProfileController extends Controller
     }
 
     private function _tabPosts() {
-      $this->view_data['posts'] = [];
+      $this->view_data['statuses'] = $this->user->statuses;;
       return view('profile.tabs.posts')->with($this->view_data);
     }
 
