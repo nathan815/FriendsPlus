@@ -117,17 +117,11 @@ class User extends Authenticatable
     }
 
     public function statuses() {
-        return $this->hasMany(
-            'FriendsPlus\Models\Status',
-            'user_id'
-        );
+        return $this->hasMany('FriendsPlus\Models\Status', 'user_id');
     }
 
     public function comments() {
-        return $this->hasMany(
-            'FriendsPlus\Models\Comment',
-            'user_id'
-        );
+        return $this->hasMany('FriendsPlus\Models\Comment', 'user_id');
     }
 
     public function friendsOfMine() {

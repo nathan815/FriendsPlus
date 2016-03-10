@@ -2,6 +2,30 @@
  * General JS for Friends+
  */
 
+function NewComment(e) {
+  var _t = $(this);
+  var status_id = _t.data('status-id');
+  var comments = $('.comments-list', '#status-'+status_id);
+  var textarea = $('textarea', _t);
+  var body = textarea.val();
+  textarea.prop('disabled',true);
+  e.preventDefault();
+  $.ajax({
+    url: _t.attr('action'),
+    method: 'POST',
+    data: { body: body },
+    success: function(response) {
+      textarea.prop('disabled',false);
+      if(!response.success) {
+        alert(response.error);
+        return;
+      }
+      comments.append(response.comment_html);
+      textarea.val('');
+    }
+  });
+}
+
 $(document).ready(function() {
 
   $.ajaxSetup({
@@ -26,12 +50,13 @@ $(document).ready(function() {
            .toggleClass($(this).data('hover-toggle-class'));
   });
 
-  $('.new-comment textarea').keydown(function(e) {
+  $('.new-comment textarea').keypress(function(e) {
     if(e.which === 13) {
       e.preventDefault();
       $(this).parent('form').submit();
     }
   });
+  $('.new-comment').submit(NewComment);
 
 
 });

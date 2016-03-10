@@ -24,27 +24,34 @@
                 <a href="/messages" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                   <span class="glyphicon glyphicon-envelope"></span> 
                   <span class="hidden-sm">Messages</span>
-                  <span class="label label-warning">3</span>
+                  <span class="label label-warning"></span>
                 </a>
                 <ul class="dropdown-menu">
                   <li class="dropdown-header"><img src="/assets/img/navbar_loading.gif" /> Loading...</li>
                 </ul>
               </li>
-              <li class="dropdown">
+              <!--<li class="dropdown">
                 <a href="{{ route('user.friend.requests') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                   <span class="glyphicon glyphicon-user"></span> 
                   <span class="hidden-sm">Requests</span>
-                  <span class="label label-warning">20</span> 
+                  <span class="label label-warning">{{ Auth::user()->friendRequests()->count() ? Auth::user()->friendRequests()->count() : '' }}</span> 
                 </a>
                 <ul class="dropdown-menu">
                   <li class="dropdown-header"><img src="/assets/img/navbar_loading.gif" /> Loading...</li>
                 </ul>
+              </li> -->
+              <li>
+                <a href="{{ route('user.friend.requests') }}">
+                  <span class="glyphicon glyphicon-user"></span> 
+                  <span class="hidden-sm">Requests</span>
+                  <span class="label label-warning">{{ Auth::user()->friendRequests()->count() ? Auth::user()->friendRequests()->count() : '' }}</span> 
+                </a>
               </li>
               <li class="dropdown">
                 <a href="/notifications" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                   <span class="glyphicon glyphicon-bell"></span> 
                   <span class="hidden-sm">Notifications</span>
-                  <span class="label label-warning">2</span> 
+                  <span class="label label-warning"></span> 
                 </a>
                 <ul class="dropdown-menu">
                   <li class="dropdown-header"><img src="/assets/img/navbar_loading.gif" /> Loading...</li>

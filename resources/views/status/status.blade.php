@@ -1,4 +1,4 @@
-<div class="status white-box">
+<div class="status white-box" id="status-{{ $status->access_id }}">
   <div class="status-content">
     <div class="media">
         <a class="pull-left" href="{{ route('user.profile', $status->user->username) }}">
@@ -52,30 +52,16 @@
 
   <div class="comments">
 
-    @foreach($status->comments as $comment)
-      <div class="comment media">
-          <a class="pull-left" href="#">
-              <img class="media-object img-rounded" alt="" src="{{ $comment->user->getAvatarUrl(35) }}">
-          </a>
-          <div class="media-body">
-              <p class="media-heading">
-                <a href="#">{{ $comment->user->username }}</a> 
-                8 minutes ago
-              </p>
-              <p class="comment-body">{{ $comment->body }}</p>
-              <div class="actions">
-                <a href="#">Like</a>
-                &middot;
-                <span class="glyphicon glyphicon-thumbs-up"></span> 3
-              </div>
-          </div>
-      </div>
-    @endforeach
+    <div class="comments-list">
+      @foreach($status->comments as $comment)
+        @include('status.comment')
+      @endforeach
+    </div>
 
     <div class="media">
       <img class="pull-left media-object img-rounded" src="{{ Auth::user()->getAvatarUrl(35) }}" />
       <div class="media-body">
-        <form class="new-comment" role="form" action="{{ route('comment.new', [ 'status_id' => $status->access_id ]) }}" method="post">
+        <form class="new-comment" role="form" action="{{ route('comment.new', [ 'status_id' => $status->access_id ]) }}" method="post" data-status-id="{{ $status->access_id }}">
           {{ csrf_field() }}
           <textarea name="body" class="form-control" rows="2" placeholder="Type a comment..."></textarea>
         </form>

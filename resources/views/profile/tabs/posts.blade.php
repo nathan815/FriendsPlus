@@ -4,6 +4,16 @@
 
   @include('status.new_status_box')
 
+  @if(!$statuses->count())
+    <div class="white-box">
+      {{ $user->name }} has not posted any statuses yet.
+    </div>
+  @else
+    @foreach($statuses as $status) 
+      @include('status.status')
+    @endforeach
+  @endif
+
 @stop
 
 @section('tab_sidebar')

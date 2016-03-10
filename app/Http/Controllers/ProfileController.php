@@ -19,7 +19,7 @@ class ProfileController extends Controller
       'groups' => 'Groups', 
       'info' => 'Info'
     ];
-    private $template_data = [];
+    private $view_data = [];
 
     public function getProfile($username, $tab = 'posts') {
       $is_owner = Auth::check() && ($username == Auth::user()->username);
@@ -32,11 +32,13 @@ class ProfileController extends Controller
       if(!$user || !array_key_exists($tab, $this->tabs)) {
         abort(404);
       }
-      $this->template_data = [
+      $statuses = $user->statuses;
+      $this->view_data = [
         'user' => $user,
         'current_tab' => $tab,
         'tabs' => $this->tabs,
-        'is_owner' => $is_owner
+        'is_owner' => $is_owner,
+        'statuses' => $statuses
       ];
       switch($tab) {
         case 'posts':
@@ -58,27 +60,27 @@ class ProfileController extends Controller
     }
 
     private function _tabPosts() {
-      $this->template_data['posts'] = [];
-      return view('profile.tabs.posts')->with($this->template_data);
+      $this->view_data['posts'] = [];
+      return view('profile.tabs.posts')->with($this->view_data);
     }
 
     private function _tabPictures() {
-      $this->template_data['pictures'] = [];
-      return view('profile.tabs.pictures')->with($this->template_data);
+      $this->view_data['pictures'] = [];
+      return view('profile.tabs.pictures')->with($this->view_data);
     }
 
     private function _tabFriends() {
-      $this->template_data['posts'] = [];
-      return view('profile.tabs.friends')->with($this->template_data);
+      $this->view_data['posts'] = [];
+      return view('profile.tabs.friends')->with($this->view_data);
     }
 
     private function _tabGroups() {
-      $this->template_data['groups'] = [];
-      return view('profile.tabs.groups')->with($this->template_data);
+      $this->view_data['groups'] = [];
+      return view('profile.tabs.groups')->with($this->view_data);
     }
 
     private function _tabInfo() {
-      return view('profile.tabs.info')->with($this->template_data);
+      return view('profile.tabs.info')->with($this->view_data);
     }
 
 }

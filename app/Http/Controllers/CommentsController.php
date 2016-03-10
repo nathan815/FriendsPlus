@@ -26,7 +26,10 @@ class CommentsController extends Controller
       
       if(Request::ajax()) {
         return response()->json([
-          'success'=>true
+          'success' => true,
+          'comment_html' => view('status.comment')->with([
+              'comment' => $comment
+            ])->render()
         ]);
       }
       else {
