@@ -54,6 +54,7 @@ function NewComment(e) {
         return;
       }
       comments.append(response.comment_html);
+      $('.timeago').timeago();
       textarea.val('');
     }
   });

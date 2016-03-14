@@ -5,7 +5,7 @@
     <div class="media-body">
         <p class="media-heading">
           <a href="#" title="{{ $comment->user->username }}">{{ $comment->user->name }}</a> 
-          {{ $comment->created_at->diffForHumans() }}
+          <span class="timeago" title="{{ $comment->created_at->toIso8601String() }}">{{ $comment->created_at->toDayDateTimeString() }}</span>
         </p>
         <p class="comment-body">{{ $comment->body }}</p>
         <div class="actions">

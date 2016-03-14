@@ -4,7 +4,7 @@
     <br>
   </div>
   <div class="media-body">
-    <a href="{{ route('user.profile', $userblock_user->username) }}" class="text-strong">{{ $userblock_user->name }}</a>
+    <h5 class="pull-left"><a href="{{ route('user.profile', $userblock_user->username) }}" class="text-bold">{{ $userblock_user->name }}</a></h5>
     <div class="pull-right">
       @include('user.friend_btn')
     </div>
