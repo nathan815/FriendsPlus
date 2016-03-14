@@ -181,13 +181,17 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     'uses' => 'StatusController@postNew',
     'as' => 'status.new'
   ]);
+  Route::post('/status/like', [
+    'uses' => 'StatusController@postLike',
+    'as' => 'status.like'
+  ]);
   Route::get('/status/{id}', [
     'uses' => 'StatusController@getView',
     'as' => 'status.view'
   ]);
-  Route::post('/status/like', [
-    'uses' => 'StatusController@postLike',
-    'as' => 'status.like'
+  Route::get('/status/{id}/likes', [
+    'uses' => 'StatusController@getLikes',
+    'as' => 'status.likes'
   ]);
 
   /**

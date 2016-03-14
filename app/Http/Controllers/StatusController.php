@@ -19,6 +19,18 @@ class StatusController extends Controller
         'status' => $status
       ]);
     }
+
+    public function getLikes($id) {
+      $status = Status::where('access_id', $id)->first();
+      $users = [];
+      foreach($status->likes as $like) {
+        $users[] = $like->user;
+      }
+      return view('status.likes')->with([
+        'status' => $status,
+        'users' => $users
+      ]);
+    }
     
     public function postNew(NewStatusRequest $request) {
       $status = new Status;

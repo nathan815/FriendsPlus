@@ -1,4 +1,4 @@
-<div class="status white-box" data-id="{{ $status->id }}" id="status-{{ $status->access_id }}">
+<div class="status white-box" data-id="{{ $status->id }}" data-access-id="{{ $status->access_id }}" id="status-{{ $status->access_id }}">
   <div class="status-content">
     <div class="media">
         <a class="pull-left" href="{{ route('user.profile', $status->user->username) }}">
@@ -12,7 +12,7 @@
                 <a href="{{ route('user.profile', $status->to->username) }}" title="{{ "@" . $status->user->username }}">{{ $status->to->name }}</a>
               @endif
               <p class="status-time">
-                <a href="{{ route('status.view', $status->access_id) }}">{{ $status->created_at->toDayDateTimeString() }}</a>
+                <a href="{{ route('status.view', $status->access_id) }}" class="timeago" title="{{ $status->created_at->toIso8601String() }}">{{ $status->created_at->toDayDateTimeString() }}</a>
               </p>
             </div>
         </div>

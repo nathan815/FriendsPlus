@@ -30,6 +30,9 @@
 <!-- Scripts -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script src="/assets/js/plugins/jquery.jscroll.min.js"></script>
+<script src="/assets/js/plugins/jquery.timeago.js"></script>
+<script src="/assets/js/plugins/bootbox.min.js"></script>
 <script src="/assets/js/main.js"></script>
 <script src="/assets/js/modules/friend_system.js"></script>
 @yield('scripts')

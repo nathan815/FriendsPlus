@@ -4,7 +4,7 @@
     @if(Route::is('user.profile'))
       <input type="hidden" name="to" value="{{ $user->id }}" />
     @endif
-    <textarea class="form-control" placeholder="{{ Route::is('user.profile') ? 'Post to '.$user->username.'\'s profile...' : 'What\'s up, '.Auth::user()->username .'?' }}" name="body"></textarea>
+    <textarea class="form-control" placeholder="{{ Route::is('user.profile') && !$is_owner ? 'Post to '.$user->username.'\'s profile...' : 'What\'s up, '.Auth::user()->username .'?' }}" name="body"></textarea>
     <div class="actions">
       <div class="pull-left">
         <button type="button" class="btn btn-default">

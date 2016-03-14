@@ -2,6 +2,34 @@
  * General JS for Friends+
  */
 
+function AjaxModal(options) {
+  var defaults = {
+    title: 'Title',
+    message: '<div class="progress"> \
+      <div class="progress-bar progress-bar-striped active" role="progressbar" style="width: 100%"> \
+        <span class="sr-only">Loading</span> \
+      </div> \
+    </div>'
+  }
+  var options = Object.assign(defaults, options);
+  var box = bootbox.dialog(options);
+  $.ajax({
+    method: 'get',
+    url: options.url,
+    complete: function() {
+      box.modal('hide');
+    },
+    success: function(response) {
+      options['message'] = response;
+      bootbox.dialog(options);
+    },
+    error: function() {
+      options['message'] = 'Could not load modal.';
+      bootbox.dialog(options);
+    }
+  })
+}
+
 function NewComment(e) {
   e.preventDefault();
   var form = $(this);
@@ -77,7 +105,11 @@ function LikeStatus() {
 
 function ViewLikes(e) {
   e.preventDefault();
-  alert('hi');
+  var id = $(this).closest('.status').data('access-id');
+  AjaxModal({
+    title: 'People who like this',
+    url: '/status/'+id+'/likes'
+  });
 }
 
 $(document).ready(function() {
@@ -115,5 +147,6 @@ $(document).ready(function() {
   $('.container').on('click', '.status .like', LikeStatus);
   $('.container').on('click', '.status .likes a', ViewLikes);
 
+  $('.timeago').timeago();
 
 });
