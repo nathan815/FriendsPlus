@@ -30,6 +30,10 @@ function AjaxModal(options) {
   })
 }
 
+function FocusCommentBox() {
+  var status = $(this).closest('.status');
+  $('textarea', status).focus();
+}
 function NewComment(e) {
   e.preventDefault();
   var form = $(this);
@@ -145,6 +149,7 @@ $(document).ready(function() {
   });
   $('.new-comment').submit(NewComment);
 
+  $('.container').on('click', '.status .comment', FocusCommentBox);
   $('.container').on('click', '.status .like', LikeStatus);
   $('.container').on('click', '.status .likes a', ViewLikes);
 

@@ -1,6 +1,6 @@
 <div class="media">
   <div class="media-object pull-left">
-    <img src="{{ $userblock_user->getAvatarUrl(50) }}">
+    <img style="width:50px" src="{{ $userblock_user->getAvatarUrl(50) }}">
     <br>
   </div>
   <div class="media-body">

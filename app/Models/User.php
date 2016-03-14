@@ -112,7 +112,8 @@ class User extends Authenticatable
     public function getAvatarUrl($size = 80) {
         $baseUrl = 'http://gravatar.com/avatar/';
         $hash = md5($this->email);
-        $url = $baseUrl . $hash . '?s=' . $size;
+        $default = 'http://i.imgur.com/YiVi6YI.png';
+        $url = $baseUrl . $hash . '?s=' . $size . '&d=' . $default;
         return $url;
     }
 

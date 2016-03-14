@@ -32,6 +32,10 @@ button {
   border-radius: 5px;
   box-shadow: 1px 1px 2px #ccc;
 }
+.white-box h6 {
+  font-weight: bold;
+  color: inherit;
+}
 
 .text-centered {
   text-align: center;
@@ -115,6 +119,10 @@ button {
 .user-info a {
   text-decoration: none;
 }
+.user-info img {
+  width: 90px;
+  height: 90px;
+}
 
 /**********************
     New Status Box
@@ -155,6 +163,10 @@ button {
 }
 .status .status-content {
   padding: 15px;
+}
+.status img.profile-picture {
+  width: 50px;
+  height: 50px;
 }
 .status .media-heading .status-time, 
 .status .media-heading .status-time a
@@ -240,12 +252,20 @@ button {
   border-radius: 3px;
   border: 1px solid #ddd;
 }
+.status .comments .new-comment-container img {
+  width: 45px;
+  height: 35px;
+}
 .status .comment {
   font-size: 13px;
 }
 .status .comment .media-heading {
   font-size: 13px;
   color: #888;
+}
+.status .comment img.media-object {
+  width: 35px;
+  height: 35px;
 }
 .status .comment .media-heading a {
   font-weight: bold;

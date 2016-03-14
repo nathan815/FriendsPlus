@@ -2,7 +2,7 @@
   <div class="status-content">
     <div class="media">
         <a class="pull-left" href="{{ route('user.profile', $status->user->username) }}">
-            <img class="media-object img-rounded" alt="$status->user->username)" src="{{ $status->user->getAvatarUrl(50) }}">
+            <img class="media-object img-rounded profile-picture" alt="$status->user->username)" src="{{ $status->user->getAvatarUrl(50) }}">
         </a>
         <div class="media-body">
             <div class="media-heading">
@@ -57,7 +57,7 @@
           <!--<span class="dislikes"><a href="#">2 people</a> dislike this.</span>-->
         </div>
         <div class="pull-right">
-          <button class="btn btn-sm btn-default"><span class="glyphicon glyphicon-comment"></span> Comment</button>
+          <button class="btn btn-sm btn-default comment"><span class="glyphicon glyphicon-comment"></span> Comment</button>
           <button class="btn btn-sm btn-default"><span class="glyphicon glyphicon-share"></span> Share</button>
         </div>
         <div class="clearfix"></div>
@@ -74,7 +74,7 @@
     </div>
 
     @if(Auth::user()->isFriendsWith($status->user) || $status->isOwner())
-    <div class="media">
+    <div class="media new-comment-container">
       <img class="pull-left media-object img-rounded" src="{{ Auth::user()->getAvatarUrl(35) }}" />
       <div class="media-body">
         <form class="new-comment" role="form" action="{{ route('comment.new', [ 'status_id' => $status->access_id ]) }}" method="post">
