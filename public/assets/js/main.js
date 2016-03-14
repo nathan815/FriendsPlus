@@ -2,6 +2,8 @@
  * General JS for Friends+
  */
 
+var CurrentRoute = $('meta[name=route]').attr('content');
+
 function AjaxModal(options) {
   var defaults = {
     title: 'Title',
@@ -117,6 +119,64 @@ function ViewLikes(e) {
   });
 }
 
+function DeleteStatus(id, callback) {
+  $.ajax({
+    url: '/status/delete',
+    method: 'post',
+    data: {
+      id: id
+    },
+    success: function(response) {
+      if(response.error) {
+        alert(response.error);
+        return;
+      }
+      $('#status-'+id).slideUp();
+      callback();
+    }
+  })
+}
+function DeleteStatusConfirm(e) {
+  e.preventDefault();
+  var id = $(this).closest('.status').data('access-id');
+  var box = bootbox.dialog({
+    title: 'Delete status',
+    message: 'Are you sure that you want to delete this status?',
+    buttons: {
+      danger: {
+        label: 'Delete',
+        className: 'btn-danger',
+        callback: function() {
+          DeleteStatus(id, function() {
+            box.modal('hide');
+          });
+          return false;
+        }
+      },
+      default: {
+        label: 'Cancel',
+        className: 'btn-default'
+      }
+    }
+  });
+}
+
+function Notifications() {
+  bootbox.dialog({
+    title: 'Notifications',
+    message: '<p class="text-center" style="font-size:16px;"><span class="glyphicon glyphicon-bell" style="font-size:30px;"></span> <br>No new notifications.</p>'
+  });
+  return false;
+}
+
+function Messages() {
+  bootbox.dialog({
+    title: 'Messages',
+    message: '<p class="text-center" style="font-size:16px;"><span class="glyphicon glyphicon-envelope" style="font-size:30px;"></span> <br>Messaging is coming soon!</p>'
+  });
+  return false;
+}
+
 $(document).ready(function() {
 
   $.ajaxSetup({
@@ -130,7 +190,7 @@ $(document).ready(function() {
 
   // Change text and color of button on hover
   // Use data-hover-text and data-hover-toggle-class attributes
-  $('.container').on('mouseenter', '.btn[data-hover-text]', function() {
+  $('body').on('mouseenter', '.btn[data-hover-text]', function() {
     if(!$(this).data('orig-text')) {
       $(this).data('orig-text', $(this).html());
     }
@@ -149,9 +209,13 @@ $(document).ready(function() {
   });
   $('.new-comment').submit(NewComment);
 
+  $('#notifications').click(Notifications);
+  $('#messages').click(Messages);
+
   $('.container').on('click', '.status .comment', FocusCommentBox);
   $('.container').on('click', '.status .like', LikeStatus);
   $('.container').on('click', '.status .likes a', ViewLikes);
+  $('.container').on('click', '.status .delete-status', DeleteStatusConfirm);
 
   $('.timeago').timeago();
 

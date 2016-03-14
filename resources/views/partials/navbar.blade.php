@@ -20,15 +20,12 @@
                   <span class="hidden-sm">Home</span>
                 </a>
               </li>
-              <li class="dropdown">
-                <a href="/messages" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              <li>
+                <a href="/messages" id="messages">
                   <span class="glyphicon glyphicon-envelope"></span> 
                   <span class="hidden-sm">Messages</span>
-                  <span class="label label-warning"></span>
+                  <span class="label label-warning"></span> 
                 </a>
-                <ul class="dropdown-menu">
-                  <li class="dropdown-header"><img src="/assets/img/navbar_loading.gif" /> Loading...</li>
-                </ul>
               </li>
               <!--<li class="dropdown">
                 <a href="{{ route('user.friend.requests') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -47,7 +44,14 @@
                   <span class="label label-warning">{{ Auth::user()->friendRequests()->count() ? Auth::user()->friendRequests()->count() : '' }}</span> 
                 </a>
               </li>
-              <li class="dropdown">
+              <li>
+                <a href="/notifications" id="notifications">
+                  <span class="glyphicon glyphicon-bell"></span> 
+                  <span class="hidden-sm">Notifications</span>
+                  <span class="label label-warning"></span> 
+                </a>
+              </li>
+              <!--<li class="dropdown">
                 <a href="/notifications" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                   <span class="glyphicon glyphicon-bell"></span> 
                   <span class="hidden-sm">Notifications</span>
@@ -56,7 +60,7 @@
                 <ul class="dropdown-menu">
                   <li class="dropdown-header"><img src="/assets/img/navbar_loading.gif" /> Loading...</li>
                 </ul>
-              </li>
+              </li>-->
             @endif
 
           </ul>

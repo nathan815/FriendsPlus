@@ -185,6 +185,10 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     'uses' => 'StatusController@postLike',
     'as' => 'status.like'
   ]);
+  Route::post('/status/delete', [
+    'uses' => 'StatusController@postDelete'
+  ]);
+
   Route::get('/status/{id}', [
     'uses' => 'StatusController@getView',
     'as' => 'status.view'
@@ -193,6 +197,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     'uses' => 'StatusController@getLikes',
     'as' => 'status.likes'
   ]);
+
 
   /**
    * Comments

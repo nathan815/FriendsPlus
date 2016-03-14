@@ -37,6 +37,12 @@ button {
   color: inherit;
 }
 
+.progress {
+  height: 15px;
+  border-radius: 5px;
+  margin: 0;
+}
+
 .text-centered {
   text-align: center;
 }
@@ -48,6 +54,10 @@ button {
 }
 .text-bold {
   font-weight: bold;
+}
+
+.modal-title {
+  border-bottom: 1px solid #f5f5f5;
 }
 
 .sidebar {

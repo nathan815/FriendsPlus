@@ -2,7 +2,7 @@
   <div class="status-content">
     <div class="media">
         <a class="pull-left" href="{{ route('user.profile', $status->user->username) }}">
-            <img class="media-object img-rounded profile-picture" alt="$status->user->username)" src="{{ $status->user->getAvatarUrl(50) }}">
+            <img class="media-object img-rounded profile-picture" alt="{{ $status->user->username }}" src="{{ $status->user->getAvatarUrl(50) }}">
         </a>
         <div class="media-body">
             <div class="media-heading">
@@ -39,7 +39,7 @@
 
     <div class="actions">
         <div class="pull-left">
-          <button class="like btn btn-sm btn-{{ Auth::user()->hasLikedStatus($status) ? 'success has-liked' : 'default' }}">
+          <button class="like btn btn-sm btn-{{ Auth::user()->hasLikedStatus($status) ? 'success' : 'default' }}">
             <span class="glyphicon glyphicon-thumbs-up"></span>
           </button>
           <button class="dislike btn btn-sm btn-default disabled">

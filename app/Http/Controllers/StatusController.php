@@ -31,6 +31,15 @@ class StatusController extends Controller
         'users' => $users
       ]);
     }
+
+    public function postDelete(Request $request) {
+      $id = $request->input('id');
+      $status = Status::where('access_id', $id)->first();
+      if(!$status) {
+        abort(404);
+      }
+      $status->delete();
+    }
     
     public function postNew(NewStatusRequest $request) {
       $status = new Status;

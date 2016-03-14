@@ -26,12 +26,29 @@ function AddFriend() {
     }
   });
 }
-function DeleteFriend() {
+function DeleteFriendConfirm() {
   var username = $(this).data('username');
-  var _this = $(this);
-  if(!confirm("Are you sure you want to unfriend @"+username+"?")) {
-    return false;
-  }
+  var btn = $(this);
+  bootbox.dialog({
+    title: 'Unfriend',
+    message: 'Are you sure you want to unfriend <b>@'+username+'</b>?',
+    size: 'small',
+    buttons: {
+      cancel: {
+        label: 'Cancel',
+        className: 'btn-default'
+      },
+      main: {
+        label: 'Unfriend',
+        className: 'btn-danger',
+        callback: function() {
+          DeleteFriend(username, btn);
+        }
+      }
+    }
+  });
+}
+function DeleteFriend(username, btn) {
   $.ajax({
     type: 'POST',
     url: '/friend/delete',
@@ -43,23 +60,41 @@ function DeleteFriend() {
         alert(response.error);
         return;
       }
-      _this.removeAttr('data-hover-text')
+      btn.removeAttr('data-hover-text')
            .removeAttr('data-hover-toggle-class')
            .removeClass('btn-danger btn-success')
            .addClass('btn-primary')
            .text('Add Friend')
            .attr('data-friend-btn', 'add');
       $('#message-user').remove();
-      document.location.reload();
+      if(CurrentRoute === 'user.profile') {
+        document.location.reload();
+      }
     }
   });
 }
-function CancelFriendRequest() {
+function CancelFriendRequestConfirm() {
   var username = $(this).data('username');
-  var _this = $(this);
-  if(!confirm("Cancel your friend request to @"+username+"?")) {
-    return false;
-  }
+  var btn = $(this);
+  bootbox.dialog({
+    title: 'Cancel friend request',
+    message: 'Are you sure you want to cancel your friend request to <b>@'+username+'</b>?',
+    buttons: {
+      cancel: {
+        label: 'Close',
+        className: 'btn-default'
+      },
+      main: {
+        label: 'Yes, cancel it',
+        className: 'btn-danger',
+        callback: function() {
+          CancelFriendRequest(username, btn);
+        }
+      }
+    }
+  });
+}
+function CancelFriendRequest(username, btn) {
   $.ajax({
     type: 'POST',
     url: '/friend/request/cancel',
@@ -71,7 +106,7 @@ function CancelFriendRequest() {
         alert(response.error);
         return;
       }
-      _this.removeClass('btn-danger')
+      btn.removeClass('btn-danger')
            .addClass('btn-primary')
            .text('Add Friend')
            .attr('data-friend-btn', 'add');
@@ -124,9 +159,9 @@ function DenyFriendRequest() {
 }
 
 $(document).ready(function() {
-  $('.container').on('click', '.btn[data-friend-btn="add"]', AddFriend)
-                 .on('click', '.btn[data-friend-btn="delete"]', DeleteFriend)
-                 .on('click', '.btn[data-friend-btn="cancel"]', CancelFriendRequest)
-                 .on('click', '.btn[data-friend-btn="accept"]', AcceptFriendRequest)
-                 .on('click', '.btn[data-friend-btn="deny"]', DenyFriendRequest);
+  $('body').on('click', '.btn[data-friend-btn="add"]', AddFriend)
+           .on('click', '.btn[data-friend-btn="delete"]', DeleteFriendConfirm)
+           .on('click', '.btn[data-friend-btn="cancel"]', CancelFriendRequestConfirm)
+           .on('click', '.btn[data-friend-btn="accept"]', AcceptFriendRequest)
+           .on('click', '.btn[data-friend-btn="deny"]', DenyFriendRequest);
 });
