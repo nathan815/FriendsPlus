@@ -34,8 +34,12 @@ class Status extends Model
       return $this->hasMany('FriendsPlus\Models\Comment', 'status_id', 'id');
     }
 
+    public function likes() {
+      return $this->morphMany('FriendsPlus\Models\Like', 'likeable');
+    }
+
     public function isOwner() {
-      return Auth::check() && $this->user->id === Auth::user()->id;
+      return Auth::check() && Auth::user()->id === $this->user->id;
     }
 
     public function scopeStatusesByFriendsAndMe($query) {
@@ -45,5 +49,52 @@ class Status extends Model
       })
       ->orderBy('created_at', 'desc')
       ->get();
+    }
+
+    public function getLikeInfo() {
+      if($this->linkInfo) {
+        return $this->likeInfo;
+      }
+      $likes = $this->likes->count();
+      if(!$likes) {
+        return null;
+      }
+      $you = '';
+      $other_users_liked = '';
+      $likes_this = ' like';
+
+      if(Auth::check() && Auth::user()->hasLikedStatus($this)) {
+        $you = 'You ';
+        $likes_this = ' like';
+        if($likes > 1) {
+          $you .= 'and ';
+          $other_users_liked = --$likes;
+          if($likes > 1) {
+            $other_users_liked .= ' others';
+          }
+          else {
+            $other_users_liked .= ' other person';
+            $likes_this .= 's';
+          }
+        }
+      }
+      else {
+        $other_users_liked = $likes;
+        if($likes > 1) {
+          $other_users_liked .= ' people';
+        }
+        else {
+          $other_users_liked .= ' person';
+          $likes_this .= 's';
+        }
+      }
+
+      $likes_this .= ' this.';
+      $this->likeInfo = (object)[
+        'you' => $you, 
+        'other_users_liked' =>  $other_users_liked,
+        'likes_this' => $likes_this
+      ];
+      return $this->likeInfo;
     }
 }

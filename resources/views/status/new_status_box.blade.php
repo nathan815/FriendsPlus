@@ -4,10 +4,10 @@
     <textarea class="form-control" placeholder="What's up, {{ Auth::user()->username}}?" name="body"></textarea>
     <div class="actions">
       <div class="pull-left">
-        <button class="btn btn-default">
+        <button type="button" class="btn btn-default">
             <span class="glyphicon glyphicon-picture"></span> Add Pictures
         </button>
-        <button class="btn btn-default">
+        <button type="button" class="btn btn-default">
             <span class="glyphicon glyphicon-folder-open"></span> Create Album
         </button>
       </div>

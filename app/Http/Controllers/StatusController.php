@@ -12,6 +12,13 @@ use FriendsPlus\Models\Status;
 
 class StatusController extends Controller
 {
+
+    public function getView($id) {
+      $status = Status::where('access_id', $id)->first();
+      return view('status.view')->with([
+        'status' => $status
+      ]);
+    }
     
     public function postNew(NewStatusRequest $request) {
       $status = new Status;
@@ -21,6 +28,51 @@ class StatusController extends Controller
       if($status->save()) {
         return redirect()->back();
       }
+    }
+
+    public function postLike(Request $request) {
+      $id = $request->input('id');
+      $user = Auth::user();
+      $status = Status::find($id);
+      if(!$status) {
+        abort(404);
+      }
+
+      if(!$status->isOwner() && !$user->isFriendsWith($status->user)) {
+        return response()->json([
+          'success' => false,
+          'error' => 'Oops! You are not friends with the status owner.'
+        ]);
+      }
+
+      if($user->hasLikedStatus($status)) {
+        if($status->likes()->where('user_id', $user->id)->delete()) {
+          $likesThis = Status::find($id)->getLikeInfo();
+          return response()->json([
+            'success' => true,
+            'likesThis' => $likesThis,
+            'likes' => $status->likes()->count(),
+            'userHasLiked' => false
+          ]);
+        }
+      }
+      else {
+        $like = $status->likes()->create([]);
+        $user->likes()->save($like);
+        $likesThis = Status::find($id)->getLikeInfo();
+        return response()->json([
+          'success' => true,
+          'likesThis' => $likesThis,
+          'likes' => $status->likes()->count(),
+          'userHasLiked' => true
+        ]);
+      }
+
+      return response()->json([
+        'success' => false,
+        'error' => 'Unable to like/unlike status.'
+      ]);
+
     }
 
 }

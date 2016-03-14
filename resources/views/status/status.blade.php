@@ -1,4 +1,4 @@
-<div class="status white-box" id="status-{{ $status->access_id }}">
+<div class="status white-box" data-id="{{ $status->id }}" id="status-{{ $status->access_id }}">
   <div class="status-content">
     <div class="media">
         <a class="pull-left" href="{{ route('user.profile', $status->user->username) }}">
@@ -35,13 +35,22 @@
 
     <div class="actions">
         <div class="pull-left">
-          <button class="btn btn-sm btn-success"><span class="glyphicon glyphicon-thumbs-up"></span></button>
-          <button class="btn btn-sm btn-default"><span class="glyphicon glyphicon-thumbs-down"></span></button>
+          <button class="like btn btn-sm btn-{{ Auth::user()->hasLikedStatus($status) ? 'success has-liked' : 'default' }}">
+            <span class="glyphicon glyphicon-thumbs-up"></span>
+          </button>
+          <button class="dislike btn btn-sm btn-default disabled">
+            <span class="glyphicon glyphicon-thumbs-down"></span>
+          </button>
         </div>
         <div class="likes-dislikes pull-left">
-          <span class="likes">You and <a href="#">10 others</a> like this.</span>
-          <br />
-          <span class="dislikes"><a href="#">2 people</a> dislike this.</span>
+          <span class="likes">
+            @if($status->getLikeInfo())
+              {{ $status->getLikeInfo()->you }}
+              <a href="#">{{ $status->getLikeInfo()->other_users_liked }}</a>
+              {{ $status->getLikeInfo()->likes_this }}
+            @endif
+          </span>
+          <!--<span class="dislikes"><a href="#">2 people</a> dislike this.</span>-->
         </div>
         <div class="pull-right">
           <button class="btn btn-sm btn-default"><span class="glyphicon glyphicon-comment"></span> Comment</button>
@@ -64,7 +73,7 @@
     <div class="media">
       <img class="pull-left media-object img-rounded" src="{{ Auth::user()->getAvatarUrl(35) }}" />
       <div class="media-body">
-        <form class="new-comment" role="form" action="{{ route('comment.new', [ 'status_id' => $status->access_id ]) }}" method="post" data-status-id="{{ $status->access_id }}">
+        <form class="new-comment" role="form" action="{{ route('comment.new', [ 'status_id' => $status->access_id ]) }}" method="post">
           {{ csrf_field() }}
           <textarea name="body" class="form-control" rows="2" placeholder="Type a comment..."></textarea>
         </form>

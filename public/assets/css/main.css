@@ -203,8 +203,11 @@ button {
   display: inline;
   margin-left: 10px;
   line-height: 1.2;
-  font-size: 12px;
+  font-size: 13px;
   color: #444;
+}
+.status .actions .likes-dislikes span {
+  display: block;
 }
 .status .actions .likes a,
 .status .actions .dislikes a {

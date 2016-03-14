@@ -124,6 +124,10 @@ class User extends Authenticatable
         return $this->hasMany('FriendsPlus\Models\Comment', 'user_id');
     }
 
+    public function likes() {
+        return $this->hasMany('FriendsPlus\Models\Like', 'user_id');
+    }
+
     public function friendsOfMine() {
         return $this->belongsToMany(
             'FriendsPlus\Models\User', 
@@ -205,4 +209,11 @@ class User extends Authenticatable
         $this->deleteFriend($user);
     }
 
+    public function hasLikedStatus(Status $status) {
+        return (bool) $status->likes
+            ->where('likeable_id', $status->id)
+            ->where('likeable_type', 'status')
+            ->where('user_id', $this->id)
+            ->count();
+    }
 }

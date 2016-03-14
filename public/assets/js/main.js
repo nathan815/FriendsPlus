@@ -3,17 +3,22 @@
  */
 
 function NewComment(e) {
-  var _t = $(this);
-  var status_id = _t.data('status-id');
-  var comments = $('.comments-list', '#status-'+status_id);
-  var textarea = $('textarea', _t);
-  var body = textarea.val();
-  textarea.prop('disabled',true);
   e.preventDefault();
+  var form = $(this);
+  var status = form.closest('.status');
+  var statusId = status.data('id');
+  var comments = $('.comments-list', status);
+  var textarea = $('textarea', form);
+  var body = $.trim(textarea.val());
+  if(body.length < 1) return;
+  textarea.prop('disabled',true);
   $.ajax({
-    url: _t.attr('action'),
+    url: form.attr('action'),
     method: 'POST',
     data: { body: body },
+    complete: function() {
+      textarea.prop('disabled',false);
+    },
     success: function(response) {
       textarea.prop('disabled',false);
       if(!response.success) {
@@ -24,6 +29,55 @@ function NewComment(e) {
       textarea.val('');
     }
   });
+}
+
+function LikeStatus() {
+  var btn = $(this);
+  var status = btn.closest('.status');
+  var statusId = status.data('id');
+
+  var likesThis = $('.likes', status);
+
+  btn.prop('disabled',true);
+  $.ajax({
+    url: '/status/like',
+    method: 'POST',
+    data: { id: statusId },
+    complete: function() {
+      btn.prop('disabled',false);
+    },
+    success: function(response) {
+      if(!response.success) {
+        alert(response.error);
+        return;
+      }
+
+      if(response.likesThis) {
+        likesThis.html(
+          response.likesThis.you + 
+          '<a href="#">' + response.likesThis.other_users_liked + '</a>' +
+          response.likesThis.likes_this
+        );
+      } 
+      else {
+        likesThis.text('');
+      }
+
+      if(response.userHasLiked) {
+        btn.addClass('btn-success').removeClass('btn-default');
+      }
+      else {
+        btn.addClass('btn-default').removeClass('btn-success');
+      }
+
+    }
+  });
+
+}
+
+function ViewLikes(e) {
+  e.preventDefault();
+  alert('hi');
 }
 
 $(document).ready(function() {
@@ -57,6 +111,9 @@ $(document).ready(function() {
     }
   });
   $('.new-comment').submit(NewComment);
+
+  $('.container').on('click', '.status .like', LikeStatus);
+  $('.container').on('click', '.status .likes a', ViewLikes);
 
 
 });
