@@ -18,7 +18,7 @@
         </div>
     </div>
 
-    <p class="status-body">{{ $status->body }}</p>
+    <p class="status-body">{!! nl2br(e($status->body)) !!}</p>
 
     <div class="dropdown">
       <a href="#" data-toggle="dropdown" class="dropdown-toggle"><span class="glyphicon glyphicon-menu-down"></span></a>

@@ -4,10 +4,10 @@
     </a>
     <div class="media-body">
         <p class="media-heading">
-          <a href="#" title="{{ $comment->user->username }}">{{ $comment->user->name }}</a> 
+          <a href="{{ route('user.profile', $comment->user->username) }}" title="{{ $comment->user->username }}">{{ $comment->user->name }}</a> 
           <span class="timeago" title="{{ $comment->created_at->toIso8601String() }}">{{ $comment->created_at->toDayDateTimeString() }}</span>
         </p>
-        <p class="comment-body">{{ $comment->body }}</p>
+        <p class="comment-body">{!! nl2br(e($comment->body)) !!}</p>
         <div class="actions">
           <a href="#">Like</a>
           <span class="likes hidden">
