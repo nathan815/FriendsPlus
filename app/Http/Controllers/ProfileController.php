@@ -8,6 +8,7 @@ use Auth;
 use FriendsPlus\Http\Requests;
 use FriendsPlus\Http\Controllers\Controller;
 use FriendsPlus\Models\User;
+use FriendsPlus\Models\Status;
 
 class ProfileController extends Controller
 {
@@ -59,7 +60,7 @@ class ProfileController extends Controller
     }
 
     private function _tabPosts() {
-      $this->view_data['statuses'] = $this->user->statuses;;
+      $this->view_data['statuses'] = Status::where('user_id', $this->user->id)->orWhere('to_user_id', $this->user->id)->orderBy('created_at', 'desc')->get();
       return view('profile.tabs.posts')->with($this->view_data);
     }
 
@@ -69,7 +70,6 @@ class ProfileController extends Controller
     }
 
     private function _tabFriends() {
-      $this->view_data['posts'] = [];
       return view('profile.tabs.friends')->with($this->view_data);
     }
 

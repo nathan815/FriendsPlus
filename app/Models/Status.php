@@ -15,7 +15,8 @@ class Status extends Model
      * @var array
      */
     protected $fillable = [
-      'body'
+      'body',
+      'to_user_id'
     ];
 
     /**
@@ -28,6 +29,10 @@ class Status extends Model
 
     public function user() {
       return $this->belongsTo('FriendsPlus\Models\User', 'user_id');
+    }
+
+    public function to() {
+      return $this->belongsTo('FriendsPlus\Models\User', 'to_user_id');
     }
 
     public function comments() {

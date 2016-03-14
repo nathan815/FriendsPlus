@@ -168,13 +168,13 @@ button {
   margin: 0;
   line-height: 1
 }
+.status .media-heading .to-user-icon {
+  color: #bbb;
+  font-size: 13px;
+}
 .status .media-heading a.username {
-  text-decoration: none;
   font-weight: bold;
 }
-.status .media-heading a.username:hover span {
-  text-decoration: underline;
-} 
 .status .media-heading a small {
   color: #888;
   font-size: 85%;

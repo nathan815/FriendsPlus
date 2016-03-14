@@ -120,6 +120,10 @@ class User extends Authenticatable
         return $this->hasMany('FriendsPlus\Models\Status', 'user_id');
     }
 
+    public function statuses_from_others() {
+        return $this->hasMany('FriendsPlus\Models\Status', 'to_user_id');
+    }
+
     public function comments() {
         return $this->hasMany('FriendsPlus\Models\Comment', 'user_id');
     }

@@ -17,6 +17,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Relation::morphMap([
             'status' => \FriendsPlus\Models\Status::class,
+            'comment' => \FriendsPlus\Models\Comment::class,
             'like' => \FriendsPlus\Models\Like::class,
         ]);
     }

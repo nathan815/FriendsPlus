@@ -6,7 +6,11 @@
         </a>
         <div class="media-body">
             <div class="media-heading">
-              <a href="{{ route('user.profile', $status->user->username) }}" class="username" title="{{ "@" . $status->user->username }}"><span>{{ $status->user->name }}</span></a>
+              <a href="{{ route('user.profile', $status->user->username) }}" class="username" title="{{ "@" . $status->user->username }}">{{ $status->user->name }}</a>
+              @if($status->to_user_id)
+                <span class="glyphicon glyphicon-menu-right to-user-icon"></span>
+                <a href="{{ route('user.profile', $status->to->username) }}" title="{{ "@" . $status->user->username }}">{{ $status->to->name }}</a>
+              @endif
               <p class="status-time">
                 <a href="{{ route('status.view', $status->access_id) }}">{{ $status->created_at->toDayDateTimeString() }}</a>
               </p>

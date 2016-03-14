@@ -23,6 +23,9 @@ class StatusController extends Controller
     public function postNew(NewStatusRequest $request) {
       $status = new Status;
       $status->user_id = Auth::user()->id;
+      if($request->input('to') && $request->input('to') != Auth::user()->id) {
+        $status->to_user_id = $request->input('to');
+      }
       $status->access_id = mt_rand(100,9999) . time() . mt_rand(100,9999);
       $status->body = $request->body;
       if($status->save()) {
