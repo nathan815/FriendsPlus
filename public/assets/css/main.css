@@ -56,7 +56,8 @@ button {
   font-weight: bold;
 }
 
-.modal-title {
+.modal-header {
+  padding: 15px 15px 5px;
   border-bottom: 1px solid #f5f5f5;
 }
 
@@ -236,12 +237,12 @@ button {
   font-weight: bold;
   color: inherit;
 }
-.status .dropdown {
+.status .status-options {
   position: absolute;
   top: 10px;
   right: 15px;
 }
-.status .dropdown .dropdown-toggle {
+.status .status-options .dropdown-toggle {
   color: #bbb;
 }
 
@@ -266,12 +267,17 @@ button {
   border-radius: 3px;
   border: 1px solid #ddd;
 }
+.status .comments .new-comment-container {
+  margin-top: 0;
+}
 .status .comments .new-comment-container img {
   width: 45px;
   height: 35px;
 }
 .status .comment {
+  margin: 0 0 10px 0;
   font-size: 13px;
+  position: relative;
 }
 .status .comment .media-heading {
   font-size: 13px;
@@ -308,4 +314,16 @@ button {
 }
 .status .comment.has-liked .link-text-unlike {
   display: inline;
+}
+.status .comment .comment-options {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: none;
+}
+.status .comment:hover .comment-options {
+  display: inline;
+}
+.status .comment .comment-options a {
+  color: #aaa;
 }

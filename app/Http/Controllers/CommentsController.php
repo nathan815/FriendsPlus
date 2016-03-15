@@ -41,6 +41,25 @@ class CommentsController extends Controller
 
     }
 
+    public function postDelete(Request $request) {
+      $id = $request->input('id');
+      $comment = Comment::find($id);
+      if(!$comment) {
+        abort(404);
+      }
+      if($comment->delete()) {
+        return response()->json([
+          'success' => true 
+        ]);
+      }
+      else {
+        return response()->json([
+          'success' => false,
+          'error' => 'Could not delete'
+        ]);
+      }
+    }
+
     public function getLikes($id) {
       $comment = Comment::find($id);
       if(!$comment) {

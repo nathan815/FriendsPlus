@@ -20,7 +20,7 @@
 
     <p class="status-body">{!! nl2br(e($status->body)) !!}</p>
 
-    <div class="dropdown">
+    <div class="dropdown status-options">
       <a href="#" data-toggle="dropdown" class="dropdown-toggle"><span class="glyphicon glyphicon-menu-down"></span></a>
       <ul class="dropdown-menu dropdown-menu-right">
 

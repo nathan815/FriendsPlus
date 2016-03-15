@@ -189,11 +189,15 @@ function DeleteStatusConfirm(e) {
   e.preventDefault();
   var id = $(this).closest('.status').data('access-id');
   var box = bootbox.dialog({
-    title: 'Delete status',
+    title: 'Delete Status',
     message: 'Are you sure that you want to delete this status?',
     buttons: {
+      cancel: {
+        label: 'Cancel',
+        className: 'btn-default'
+      },
       danger: {
-        label: 'Delete',
+        label: 'Delete Status',
         className: 'btn-danger',
         callback: function() {
           DeleteStatus(id, function() {
@@ -201,10 +205,48 @@ function DeleteStatusConfirm(e) {
           });
           return false;
         }
-      },
-      default: {
+      }
+    }
+  });
+}
+
+function DeleteComment(id, callback) {
+  $.ajax({
+    url: '/comment/delete',
+    method: 'post',
+    data: {
+      id: id
+    },
+    success: function(response) {
+      if(response.error) {
+        alert(response.error);
+        return;
+      }
+      $('.comment[data-id='+id+']').slideUp();
+      callback();
+    }
+  })
+}
+function DeleteCommentConfirm(e) {
+  e.preventDefault();
+  var id = $(this).closest('.comment').data('id');
+  var box = bootbox.dialog({
+    title: 'Delete Comment',
+    message: 'Are you sure that you want to delete this comment?',
+    buttons: {
+      cancel: {
         label: 'Cancel',
         className: 'btn-default'
+      },
+      danger: {
+        label: 'Delete Comment',
+        className: 'btn-danger',
+        callback: function() {
+          DeleteComment(id, function() {
+            box.modal('hide');
+          });
+          return false;
+        }
       }
     }
   });
@@ -232,8 +274,27 @@ $(document).ready(function() {
     headers: {
       'X-CSRF-TOKEN': $('meta[name="X-CSRF-TOKEN"]').attr('content')
     },
-    error: function() {
-      alert('Sorry, the request could not be completed. Please try again.');
+    error: function(jqxhr, settings, thrownError) {
+      var message = 'Sorry, your request could not be completed. Please reload the page and try again.';
+      message += '<br><br><pre>Status Code: ' + jqxhr.status + '\nMessage: '+ thrownError + '</pre>';
+      bootbox.dialog({
+        title: 'A problem has occurred',
+        message: message,
+        buttons: {
+          close: {
+            label: 'Close',
+            className: 'btn-default'
+          },
+          reload: {
+            label: '<span class="glyphicon glyphicon-refresh"></span> Reload',
+            className: 'btn-primary',
+            callback: function() {
+              document.location.reload();
+              return false;
+            }
+          }
+        }
+      });
     }
   });
 
@@ -270,6 +331,7 @@ $(document).ready(function() {
   $('.container').on('click', '.comment .comment-likes a', ViewCommentLikes);
   
   $('.container').on('click', '.status .delete-status', DeleteStatusConfirm);
+  $('.container').on('click', '.status .comment .delete-comment', DeleteCommentConfirm);
 
   $('.timeago').timeago();
 

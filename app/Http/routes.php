@@ -210,6 +210,10 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     'uses' => 'CommentsController@postLike',
     'as' => 'comment.like'
   ]);
+  Route::post('/comment/delete', [
+    'uses' => 'CommentsController@postDelete',
+    'as' => 'comment.delete'
+  ]);
   Route::get('/comment/{id}/likes', [
     'uses' => 'CommentsController@getLikes',
     'as' => 'comment.likes'

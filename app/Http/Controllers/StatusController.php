@@ -38,7 +38,17 @@ class StatusController extends Controller
       if(!$status) {
         abort(404);
       }
-      $status->delete();
+      if($status->delete()) {
+        return response()->json([
+          'success' => true 
+        ]);
+      }
+      else {
+        return response()->json([
+          'success' => false,
+          'error' => 'Could not delete'
+        ]);
+      }
     }
     
     public function postNew(NewStatusRequest $request) {
