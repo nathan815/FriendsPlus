@@ -27,12 +27,12 @@ class AuthController extends Controller
   public function postSignup(SignUpRequest $request, User $user) {
 
     // Create user
-    $user->create([
-      'name' => $request->full_name,
-      'email' => $request->email,
-      'username' => $request->username,
-      'password' => bcrypt($request->password)
-    ]);
+    $user = new User;
+    $user->name = $request->full_name;
+    $user->email = $request->email;
+    $user->username = $request->username;
+    $user->password = bcrypt($request->password);
+    $user->save();
 
     // Redirect
     $alert = [
