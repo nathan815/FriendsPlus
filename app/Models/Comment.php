@@ -3,6 +3,7 @@
 namespace FriendsPlus\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Auth;
 
 class Comment extends Model
 {
@@ -23,6 +24,10 @@ class Comment extends Model
 
     public function isOwner() {
       return Auth::check() && Auth::user()->id === $this->user_id;
+    }
+
+    public function likes() {
+      return $this->morphMany('FriendsPlus\Models\Like', 'likeable');
     }
 
 }

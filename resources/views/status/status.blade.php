@@ -39,15 +39,15 @@
 
     <div class="actions">
         <div class="pull-left">
-          <button class="like btn btn-sm btn-{{ Auth::user()->hasLikedStatus($status) ? 'success' : 'default' }}">
+          <button class="like-status btn btn-sm btn-{{ Auth::user()->hasLikedStatus($status) ? 'success' : 'default' }}">
             <span class="glyphicon glyphicon-thumbs-up"></span>
           </button>
-          <button class="dislike btn btn-sm btn-default disabled">
+          <button class="dislike-status btn btn-sm btn-default disabled">
             <span class="glyphicon glyphicon-thumbs-down"></span>
           </button>
         </div>
         <div class="likes-dislikes pull-left">
-          <span class="likes">
+          <span class="status-likes">
             @if($status->getLikeInfo())
               {{ $status->getLikeInfo()->you }}
               <a href="#">{{ $status->getLikeInfo()->other_users_liked }}</a>
@@ -57,8 +57,8 @@
           <!--<span class="dislikes"><a href="#">2 people</a> dislike this.</span>-->
         </div>
         <div class="pull-right">
-          <button class="btn btn-sm btn-default comment"><span class="glyphicon glyphicon-comment"></span> Comment</button>
-          <button class="btn btn-sm btn-default"><span class="glyphicon glyphicon-share"></span> Share</button>
+          <button class="btn btn-sm btn-default comment-btn"><span class="glyphicon glyphicon-comment"></span> Comment</button>
+          <button class="btn btn-sm btn-default share-btn"><span class="glyphicon glyphicon-share"></span> Share</button>
         </div>
         <div class="clearfix"></div>
     </div>

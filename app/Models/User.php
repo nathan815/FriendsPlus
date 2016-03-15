@@ -221,4 +221,12 @@ class User extends Authenticatable
             ->where('user_id', $this->id)
             ->count();
     }
+
+    public function hasLikedComment(Comment $comment) {
+        return (bool) $comment->likes
+            ->where('likeable_id', $comment->id)
+            ->where('likeable_type', 'comment')
+            ->where('user_id', $this->id)
+            ->count();
+    }
 }

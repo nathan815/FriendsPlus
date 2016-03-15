@@ -65,13 +65,55 @@ function NewComment(e) {
     }
   });
 }
+function LikeComment(e) {
+  e.preventDefault();
+  var link = $(this);
+  var comment = link.closest('.comment');
+  var commentId = comment.data('id');
+
+  var likes = $('.comment-likes', comment);
+  var likesCount = $('.likes-count', likes);
+
+  $.ajax({
+    url: '/comment/like',
+    method: 'POST',
+    data: { id: commentId },
+    complete: function() {
+    },
+    success: function(response) {
+      if(!response.success) {
+        alert(response.error);
+        return;
+      }
+
+      if(response.likes) {
+        likes.removeClass('hidden');
+        likesCount.text(response.likes);
+      }
+      else {
+        likes.addClass('hidden');
+      }
+
+      if(response.userHasLiked) {
+        link.text('Unlike');
+        comment.addClass('has-liked');
+      }
+      else {
+        link.text('Like');
+        comment.removeClass('has-liked');
+      }
+
+    }
+  });
+
+}
 
 function LikeStatus() {
   var btn = $(this);
   var status = btn.closest('.status');
   var statusId = status.data('id');
 
-  var likesThis = $('.likes', status);
+  var likesThis = $('.status-likes', status);
 
   btn.prop('disabled',true);
   $.ajax({
@@ -110,12 +152,19 @@ function LikeStatus() {
 
 }
 
-function ViewLikes(e) {
+function ViewStatusLikes(e) {
   e.preventDefault();
   var id = $(this).closest('.status').data('access-id');
   AjaxModal({
-    title: 'People who like this',
+    title: 'People who like this status',
     url: '/status/'+id+'/likes'
+  });
+}function ViewCommentLikes(e) {
+  e.preventDefault();
+  var id = $(this).closest('.comment').data('id');
+  AjaxModal({
+    title: 'People who like this comment',
+    url: '/comment/'+id+'/likes'
   });
 }
 
@@ -212,9 +261,14 @@ $(document).ready(function() {
   $('#notifications').click(Notifications);
   $('#messages').click(Messages);
 
-  $('.container').on('click', '.status .comment', FocusCommentBox);
-  $('.container').on('click', '.status .like', LikeStatus);
-  $('.container').on('click', '.status .likes a', ViewLikes);
+  $('.container').on('click', '.status .comment-btn', FocusCommentBox);
+  
+  $('.container').on('click', '.status .like-status', LikeStatus);
+  $('.container').on('click', '.status .status-likes a', ViewStatusLikes);
+
+  $('.container').on('click', '.comment .like-comment', LikeComment);
+  $('.container').on('click', '.comment .comment-likes a', ViewCommentLikes);
+  
   $('.container').on('click', '.status .delete-status', DeleteStatusConfirm);
 
   $('.timeago').timeago();

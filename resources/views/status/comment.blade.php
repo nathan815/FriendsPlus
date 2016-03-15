@@ -1,4 +1,4 @@
-<div class="comment media">
+<div class="comment media{{ Auth::check() && Auth::user()->hasLikedComment($comment) ? ' has-liked' : '' }}" data-id="{{ $comment->id }}">
     <a class="pull-left" href="#">
         <img class="media-object img-rounded" alt="{{ $comment->user->name }}" src="{{ $comment->user->getAvatarUrl(35) }}">
     </a>
@@ -9,11 +9,16 @@
         </p>
         <p class="comment-body">{!! nl2br(e($comment->body)) !!}</p>
         <div class="actions">
-          <a href="#">Like</a>
-          <span class="likes hidden">
+          <a href="#" class="like-comment">
+            <span class="link-text-like">Like</span>
+            <span class="link-text-unlike">Unlike</span>
+          </a>
+          <span class="comment-likes{{ $comment->likes->count() < 1 ? ' hidden' : '' }}">
             &bull;
-            <span class="glyphicon glyphicon-thumbs-up"></span> 
-            <span class="likes-count">0</span>
+            <a href="#">
+              <span class="glyphicon glyphicon-thumbs-up"></span> 
+              <span class="likes-count">{{ $comment->likes->count() }}</span>
+            </a>
           </span>
         </div>
     </div>

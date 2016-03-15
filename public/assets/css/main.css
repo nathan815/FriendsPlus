@@ -231,8 +231,8 @@ button {
 .status .actions .likes-dislikes span {
   display: block;
 }
-.status .actions .likes a,
-.status .actions .dislikes a {
+.status .actions .status-likes a,
+.status .actions .status-dislikes a {
   font-weight: bold;
   color: inherit;
 }
@@ -244,6 +244,10 @@ button {
 .status .dropdown .dropdown-toggle {
   color: #bbb;
 }
+
+/**********************
+       Comments 
+***********************/
 .status .comments {
   padding: 15px;
   background: #f9f9f9;
@@ -287,4 +291,21 @@ button {
   border: 0;
   margin: 0;
   padding-top: 4px;
+}
+.status .comment .comment-likes a {
+  text-decoration: none;
+  color: inherit;
+}
+.status .comment.has-liked .comment-likes a {
+  color: #2196f3;
+  font-weight: bold;
+}
+.status .comment .link-text-unlike {
+  display: none;
+}
+.status .comment.has-liked .link-text-like {
+  display: none;
+}
+.status .comment.has-liked .link-text-unlike {
+  display: inline;
 }

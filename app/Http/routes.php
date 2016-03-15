@@ -206,5 +206,13 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     'uses' => 'CommentsController@postNew',
     'as' => 'comment.new'
   ]);
+  Route::post('/comment/like', [
+    'uses' => 'CommentsController@postLike',
+    'as' => 'comment.like'
+  ]);
+  Route::get('/comment/{id}/likes', [
+    'uses' => 'CommentsController@getLikes',
+    'as' => 'comment.likes'
+  ]);
 
 });
