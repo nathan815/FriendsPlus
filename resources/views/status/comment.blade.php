@@ -12,7 +12,7 @@
         <p class="comment-body">{!! nl2br(e($comment->body)) !!}</p>
 
         <div class="comment-options">
-          @if($comment->isOwner())
+          @if($comment->isOwner() || $status->isOwner())
           <a href="#" class="delete-comment"><span class="glyphicon glyphicon-trash"></span></a>
           @endif
         </div>

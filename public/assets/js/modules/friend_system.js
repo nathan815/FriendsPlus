@@ -32,7 +32,6 @@ function DeleteFriendConfirm() {
   bootbox.dialog({
     title: 'Unfriend',
     message: 'Are you sure you want to unfriend <b>@'+username+'</b>?',
-    size: 'small',
     buttons: {
       cancel: {
         label: 'Cancel',

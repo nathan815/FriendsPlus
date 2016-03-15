@@ -38,6 +38,12 @@ class StatusController extends Controller
       if(!$status) {
         abort(404);
       }
+      if(!$status->isOwner()) {
+        return response()->json([
+          'success' => false,
+          'error' => 'You do not own this.'
+        ]);
+      }
       if($status->delete()) {
         return response()->json([
           'success' => true 

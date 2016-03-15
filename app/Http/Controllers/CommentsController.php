@@ -47,6 +47,12 @@ class CommentsController extends Controller
       if(!$comment) {
         abort(404);
       }
+      if(!$comment->isOwner() && !$comment->status->isOwner()) {
+        return response()->json([
+          'success' => false,
+          'error' => 'You do not own this.'
+        ]);
+      }
       if($comment->delete()) {
         return response()->json([
           'success' => true 
