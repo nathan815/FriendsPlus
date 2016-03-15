@@ -24,7 +24,7 @@
           </a>
           <span class="comment-likes{{ $comment->likes->count() < 1 ? ' hidden' : '' }}">
             &bull;
-            <a href="#">
+            <a href="#" title="View who liked this comment">
               <span class="glyphicon glyphicon-thumbs-up"></span> 
               <span class="likes-count">{{ $comment->likes->count() }}</span>
             </a>
