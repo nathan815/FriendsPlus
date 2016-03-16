@@ -58,6 +58,19 @@ Route::group(['middleware' => ['web']], function () {
   ])
   ->where(['username' => '[A-Za-z0-9_\-]+']);
 
+  Route::get('uploads/avatars/{filename}', function ($filename)
+  {
+      $path = storage_path() . '/app/public/uploads/avatars/' . $filename;
+
+      $file = File::get($path);
+      $type = File::mimeType($path);
+
+      $response = Response::make($file, 200);
+      $response->header("Content-Type", $type);
+
+      return $response;
+  });
+
 });
 
 // Accessed only by guests
