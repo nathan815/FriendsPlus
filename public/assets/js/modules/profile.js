@@ -1,8 +1,11 @@
-function ChangeAvatar(e) {
-  e.preventDefault();
-  AjaxModal({
+function ChangeAvatar() {
+  var content = $('#avatar-modal-container').html();
+  bootbox.dialog({
     title:'Change Picture',
-    url: '/settings/modal/avatar'
+    message: content,
+    onEscape: function() {
+      window.location.hash = '';
+    }
   });
 }
 function DeleteAvatar() {
@@ -19,4 +22,7 @@ function DeleteAvatar() {
 $(document).ready(function() {
   $('.change-avatar').click(ChangeAvatar);
   $('body').on('click', '.delete-avatar', DeleteAvatar);
+  if(window.location.hash === '#change-avatar') {
+    ChangeAvatar();
+  }
 });

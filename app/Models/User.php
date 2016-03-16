@@ -27,6 +27,12 @@ class User extends Authenticatable
         3 => 'their'
     ];
 
+    public $avatar_directory;
+
+    public function __construct() {
+        $this->avatar_directory = '/uploads/avatars/';
+    }
+
     /**
      * The attributes that are mass assignable.
      *
@@ -110,12 +116,12 @@ class User extends Authenticatable
      * @return string        URL
      */
     public function getAvatarUrl($size = 80) {
-        $default = 'http://i.imgur.com/YiVi6YI.png';
+        $default = '/assets/img/icon-user-default.png';
         /*$baseUrl = 'http://gravatar.com/avatar/';
         $hash = md5($this->email);
         $url = $baseUrl . $hash . '?s=' . $size . '&d=' . $default;
         return $url;*/
-        return $this->avatar ? '/uploads/' . $this->avatar : $default;
+        return $this->avatar ? $this->avatar_directory . $this->avatar : $default;
     }
 
     public function statuses() {

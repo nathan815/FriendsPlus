@@ -39,7 +39,7 @@
 
     <div class="actions">
         <div class="pull-left">
-          <button class="like-status btn btn-sm btn-{{ Auth::user()->hasLikedStatus($status) ? 'success' : 'default' }}">
+          <button class="like-status btn btn-sm btn-{{ Auth::check() && Auth::user()->hasLikedStatus($status) ? 'success' : 'default' }}">
             <span class="glyphicon glyphicon-thumbs-up"></span>
           </button>
           <button class="dislike-status btn btn-sm btn-default disabled">
@@ -73,7 +73,7 @@
       @endforeach
     </div>
 
-    @if(Auth::user()->isFriendsWith($status->user) || $status->isOwner())
+    @if(Auth::check() && Auth::user()->isFriendsWith($status->user) || $status->isOwner())
     <div class="media new-comment-container">
       <img class="pull-left media-object img-rounded" src="{{ Auth::user()->getAvatarUrl(35) }}" />
       <div class="media-body">

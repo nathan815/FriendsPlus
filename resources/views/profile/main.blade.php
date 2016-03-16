@@ -85,7 +85,7 @@
   <div class="avatar-container">
     <img src="{{ $user->getAvatarUrl(150) }}" class="avatar" />
     @if($is_owner)
-      <a href="#" class="change-avatar" title="Change Picture"><span class="glyphicon glyphicon-camera"></span></a>
+      <a href="#change-avatar" class="change-avatar" title="Change Picture"><span class="glyphicon glyphicon-camera"></span></a>
     @endif
   </div>
 
@@ -115,5 +115,12 @@
   </div>
 
 </div>
+
+<!-- Modals -->
+@if($is_owner)
+  <div id="avatar-modal-container" class="hidden">
+    @include('profile.modals.change_avatar')
+  </div>
+@endif
 
 @stop

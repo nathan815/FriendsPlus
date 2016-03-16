@@ -4,6 +4,8 @@ namespace FriendsPlus\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use Input;
+use Image;
 
 use FriendsPlus\Http\Requests;
 use FriendsPlus\Http\Controllers\Controller;
@@ -80,6 +82,37 @@ class ProfileController extends Controller
 
     private function _tabInfo() {
       return view('profile.tabs.info')->with($this->view_data);
+    }
+
+    public function getChangeAvatarModal() {
+      return view('settings.modal.avatar');
+    }
+
+    public function postUploadAvatar(Requests\UploadAvatarRequest $request) {
+      $user = Auth::user();
+      $file = $request->file('avatar');
+
+      $image = Image::make($file);
+      $fileName = $user->id . '_' . time() . '.png';
+      $path = storage_path() . '/app/public/' . $user->avatar_directory . $fileName;
+      $image->resize(200, 200);
+
+      if($image->save($path)) {
+        $user->avatar = $fileName;
+        $user->save();
+      }
+
+      return redirect()->route('user.profile', $user->username);
+    }
+
+    public function postDeleteAvatar() {
+      $user = Auth::user();
+      $user->avatar = null;
+      $user->save();
+      return response()->json([
+        'success' => true,
+        'url' => $user->getAvatarUrl()
+      ]);
     }
 
 }

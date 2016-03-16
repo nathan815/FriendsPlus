@@ -1,9 +1,16 @@
 <div class="change-avatar-modal row">
   <div class="col-sm-6">
     <h5>Upload New Picture</h5>
-    <form method="post" action="{{ route('avatar.upload') }}">
+    <form method="post" action="{{ route('avatar.upload') }}" enctype="multipart/form-data">
       {{ csrf_field() }}
-      <input type="file" class="form-control" name="avatar" type="jpeg,png,gif" />
+      <div class="form-group{{ $errors->has('avatar') ? ' has-error' : '' }}">
+        <input type="file" class="form-control" name="avatar" type="jpeg,png,gif" />
+
+        @if($errors->has('avatar')) 
+          <span class="help-block">{{ $errors->first('avatar') }}</span>
+        @endif
+
+      </div>
       <br />
       <button type="submit" class="btn btn-primary">Upload</button>
     </form>

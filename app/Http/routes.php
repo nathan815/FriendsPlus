@@ -138,18 +138,18 @@ Route::group(['middleware' => ['web', 'auth']], function () {
   ]);
 
   /**
-   * Settings modals
+   * Avatar settings
    */
-  Route::get('/settings/modal/avatar', [
-    'uses' => 'SettingsController@getChangeAvatarModal'
+  Route::get('/avatar/modal', [
+    'uses' => 'ProfileController@getChangeAvatarModal'
   ]);
-
-  /**
-   * Profile picture settings
-   */
-  
-  Route::post('/settings/avatar/delete', [
-    'uses' => 'SettingsController@postDeleteAvatar'
+  Route::post('/avatar/delete', [
+    'uses' => 'ProfileController@postDeleteAvatar',
+    'as' => 'avatar.delete'
+  ]);
+  Route::post('/avatar/upload', [
+    'uses' => 'ProfileController@postUploadAvatar',
+    'as' => 'avatar.upload'
   ]);
 
   /**

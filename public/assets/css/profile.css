@@ -139,7 +139,10 @@
   padding-top: 30px;
 }
 
-.current-avatar {
+.change-avatar-modal .current-avatar {
   width: 100px;
   height: 100px;
+}
+.change-avatar-modal input[type="file"] {
+  box-shadow: none;
 }
