@@ -89,12 +89,12 @@ class CommentsController extends Controller
         abort(404);
       }
 
-      if(!$comment->isOwner() && !$user->isFriendsWith($comment->user)) {
+      /*if(!$comment->isOwner() && !$user->isFriendsWith($comment->user)) {
         return response()->json([
           'success' => false,
           'error' => 'Oops! You are not friends with the comment owner.'
         ]);
-      }
+      }*/
 
       if($user->hasLikedComment($comment)) {
         if($comment->likes()->where('user_id', $user->id)->delete()) {

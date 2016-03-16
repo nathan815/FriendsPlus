@@ -87,16 +87,38 @@
   top: 7px;
   right: 6px;
 }
-.header img.avatar {
-  width: 150px;
-  height: 150px;
-  box-shadow: 0 0 4px #111;
-  border-radius: 100%;
-  border: 3px solid white;
+.header .avatar-container {
   position: absolute;
   top:  135px;
   left: 15px;
   z-index: 10;
+  width: 150px;
+  height: 150px;
+}
+.header .avatar-container a.change-avatar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 50px;
+  color: white;
+  background: rgba(0,0,0,0.7);
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  border-radius: 100%;
+  padding: 35px 0 0 0;
+  opacity: 0;
+  transition: opacity ease-in-out .25s;
+}
+.header .avatar-container:hover a.change-avatar {
+  opacity: 1;
+}
+.header img.avatar {  
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 0 4px #111;
+  border-radius: 100%;
+  border: 3px solid white;
 }
 
 .profile-nav {
@@ -115,4 +137,9 @@
 }
 .profile-sidebar .nav {
   padding-top: 30px;
+}
+
+.current-avatar {
+  width: 100px;
+  height: 100px;
 }

@@ -50,4 +50,20 @@ class SettingsController extends Controller
         'tab' => 'password'
       ]);
     }
+
+    public function getChangeAvatarModal() {
+      return view('settings.modal.avatar');
+    }
+    public function postUploadAvatar() {
+
+    }
+    public function postDeleteAvatar() {
+      $user = Auth::user();
+      $user->avatar = null;
+      $user->save();
+      return response()->json([
+        'success' => true,
+        'url' => $user->getAvatarUrl()
+      ]);
+    }
 }

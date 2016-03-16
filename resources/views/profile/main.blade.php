@@ -6,6 +6,10 @@
 <link rel="stylesheet" type="text/css" href="/assets/css/profile.css" />
 @stop
 
+@section('scripts')
+<script type="text/javascript" src="/assets/js/modules/profile.js"></script>
+@stop
+
 @section('content')
 
 <header class="header">
@@ -18,8 +22,8 @@
       <div class="dropdown change-cover">
         <button data-toggle="dropdown" class="btn btn-default btn-sm change dropdown-toggle"><span class="glyphicon glyphicon-picture"></span> Change Cover</button>
         <ul class="dropdown-menu dropdown-menu-right">
-          <li><a href="#">Upload New Cover</a></li>
-          <li><a href="#">Remove Current Cover</a></li>
+          <li><a href="#" class="upload-cover">Upload New Cover</a></li>
+          <li><a href="#" class="remove-cover">Remove Current Cover</a></li>
         </ul>
       </div>
       @endif
@@ -78,7 +82,12 @@
 
   </div>
 
-  <img src="{{ $user->getAvatarUrl(150) }}" class="avatar" />
+  <div class="avatar-container">
+    <img src="{{ $user->getAvatarUrl(150) }}" class="avatar" />
+    @if($is_owner)
+      <a href="#" class="change-avatar" title="Change Picture"><span class="glyphicon glyphicon-camera"></span></a>
+    @endif
+  </div>
 
   <div class="profile-nav">
     <ul class="nav nav-pills nav-sm">

@@ -138,6 +138,21 @@ Route::group(['middleware' => ['web', 'auth']], function () {
   ]);
 
   /**
+   * Settings modals
+   */
+  Route::get('/settings/modal/avatar', [
+    'uses' => 'SettingsController@getChangeAvatarModal'
+  ]);
+
+  /**
+   * Profile picture settings
+   */
+  
+  Route::post('/settings/avatar/delete', [
+    'uses' => 'SettingsController@postDeleteAvatar'
+  ]);
+
+  /**
    * Add/delete friends
    */
   Route::post('/friend/add', [

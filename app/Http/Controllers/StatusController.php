@@ -78,12 +78,12 @@ class StatusController extends Controller
         abort(404);
       }
 
-      if(!$status->isOwner() && !$user->isFriendsWith($status->user)) {
+      /*if(!$status->isOwner() && !$user->isFriendsWith($status->user)) {
         return response()->json([
           'success' => false,
           'error' => 'Oops! You are not friends with the status owner.'
         ]);
-      }
+      }*/
 
       if($user->hasLikedStatus($status)) {
         if($status->likes()->where('user_id', $user->id)->delete()) {
