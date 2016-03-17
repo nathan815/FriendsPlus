@@ -4,7 +4,7 @@
     <form method="post" action="{{ route('avatar.upload') }}" enctype="multipart/form-data">
       {{ csrf_field() }}
       <div class="form-group{{ $errors->has('avatar') ? ' has-error' : '' }}">
-        <input required type="file" class="form-control" name="avatar" type="jpeg,png,gif" />
+        <input required type="file" class="form-control" name="avatar" accept="jpg,jpeg,png,gif" />
 
         @if($errors->has('avatar')) 
           <span class="help-block">{{ $errors->first('avatar') }}</span>
