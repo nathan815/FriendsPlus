@@ -27,11 +27,7 @@ class User extends Authenticatable
         3 => 'their'
     ];
 
-    public $avatar_directory;
-
-    public function __construct() {
-        $this->avatar_directory = '/uploads/avatars/';
-    }
+    public $avatar_directory = '/uploads/avatars/';
 
     /**
      * The attributes that are mass assignable.

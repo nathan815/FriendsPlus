@@ -94,8 +94,10 @@ class ProfileController extends Controller
 
       $image = Image::make($file);
       $fileName = $user->id . '_' . time() . '.png';
-      $path = storage_path() . '/app/public' . $user->avatar_directory . $fileName;
-      $image->resize(200, 200);
+      $path = storage_path('app/public/' . $user->avatar_directory . $fileName);
+      $image->fit(200, 200, function ($constraint) {
+          $constraint->upsize();
+      });
 
       if($image->save($path)) {
         $user->avatar = $fileName;
