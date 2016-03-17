@@ -218,7 +218,7 @@ class User extends Authenticatable
     }
 
     public function hasLikedStatus(Status $status) {
-        return (bool) $status->likes
+        return (bool) $status->likes()
             ->where('likeable_id', $status->id)
             ->where('likeable_type', 'status')
             ->where('user_id', $this->id)
@@ -226,7 +226,7 @@ class User extends Authenticatable
     }
 
     public function hasLikedComment(Comment $comment) {
-        return (bool) $comment->likes
+        return (bool) $comment->likes()
             ->where('likeable_id', $comment->id)
             ->where('likeable_type', 'comment')
             ->where('user_id', $this->id)
