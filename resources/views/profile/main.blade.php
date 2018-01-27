@@ -19,10 +19,10 @@
       <img class="cover" src="http://wowslider.com/sliders/demo-10/data/images/autumn_leaves.jpg" />
       
       @if($is_owner)
-      <div class="dropdown change-cover">
+      <div class="dropdown change-cover-container">
         <button data-toggle="dropdown" class="btn btn-default btn-sm change dropdown-toggle"><span class="glyphicon glyphicon-picture"></span> Change Cover</button>
         <ul class="dropdown-menu dropdown-menu-right">
-          <li><a href="#" class="upload-cover">Upload New Cover</a></li>
+          <li><a href="#" class="change-cover">Upload New Cover</a></li>
           <li><a href="#" class="remove-cover">Remove Current Cover</a></li>
         </ul>
       </div>
@@ -121,6 +121,11 @@
   <div id="avatar-modal-container" class="hidden">
     @include('profile.modals.change_avatar')
   </div>
+
+  <div id="cover-modal-container" class="hidden">
+    @include('profile.modals.change_cover')
+  </div>
+
 @endif
 
 @stop

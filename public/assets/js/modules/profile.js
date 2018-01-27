@@ -19,8 +19,17 @@ function DeleteAvatar() {
   });
 }
 
+function ChangeCover() {
+  var content = $('#cover-modal-container').html();
+  bootbox.dialog({
+    title: 'Change Cover',
+    message: content
+  });
+}
+
 $(document).ready(function() {
   $('.change-avatar').click(ChangeAvatar);
+  $('.change-cover').click(ChangeCover);
   $('body').on('click', '.delete-avatar', DeleteAvatar);
   if(window.location.hash === '#change-avatar') {
     ChangeAvatar();
